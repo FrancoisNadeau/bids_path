@@ -1,0 +1,129 @@
+---
+# BrainVison Core Data Format
+- suffixes:
+  - eeg
+  extensions:
+  - .json
+  - .vhdr
+  - .vmrk
+  - .eeg
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# European data format
+- suffixes:
+  - eeg
+  extensions:
+  - .json
+  - .edf
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# EEGLAB
+- suffixes:
+  - eeg
+  extensions:
+  - .json
+  - .set
+  - .fdt
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# Biosemi
+- suffixes:
+  - eeg
+  extensions:
+  - .json
+  - .bdf
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# Channels description
+- suffixes:
+  - channels
+  extensions:
+  - .json
+  - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# Coordinate System
+- suffixes:
+  - coordsystem
+  extensions:
+  - .json
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    space: optional
+
+# Electrodes description
+- suffixes:
+  - electrodes
+  extensions:
+  - .json
+  - .tsv
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+    space: optional
+
+# Events
+- suffixes:
+  - events
+  extensions:
+  - .json
+  - .tsv
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# Landmark photos
+- suffixes:
+  - photo
+  extensions:
+  - .jpg
+  entities:
+    subject: required
+    session: optional
+    acquisition: optional
+
+# Timeseries
+- suffixes:
+  - physio
+  - stim
+  extensions:
+  - .tsv.gz
+  - .json
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+    recording: optional

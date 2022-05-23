@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 """
 Extension of the abstract base class ``os.PathLike`` for BIDS datasets.
@@ -9,7 +8,8 @@ import collections
 from abc import abstractmethod
 from os import PathLike
 from typing import runtime_checkable, Protocol, Union, Text, Container
-from bids_path.constants.BIDSPathConstants import GenericAlias
+
+from .constants.BIDSPathConstants import GenericAlias
 
 _check_methods = getattr(collections._collections_abc, '_check_methods')
 

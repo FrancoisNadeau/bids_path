@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 """
 Functions returning boolean values according to path characteristics.
@@ -6,20 +5,21 @@ Functions returning boolean values according to path characteristics.
 Each function name starts by "Is" and indicates to which type
 a file within a BIDS dataset corresponds to.
 
-New bidspath_functions should be independent of other ``BIDSPath`` files,
-except for those defined in the ``bids_path.constants.BIDSPathConstants``
-and ``bids_path.bidspath_functions.BIDSPathCoreFunctions`` modules.
+New bids_path_functions should be independent of other ``BIDSPath`` files,
+except for those defined in the ``bidspathlib.constants.BIDSPathConstants``
+and ``bidspathlib.bids_path_functions.BIDSPathCoreFunctions`` modules.
 This is to avoid circular imports.
 """
 
-from nibabel import Nifti1Image
-from nilearn.image import load_img
 from os import PathLike
 from os.path import isfile
 from typing import List, Union, Text, Tuple
 
-from bids_path.constants.BIDSPathConstants import NIFTI_EXTENSIONS, NIFTI_ERRORS
-from bids_path.functions.BIDSPathCoreFunctions import find_extension, find_bids_suffix
+from nibabel import Nifti1Image
+from nilearn.image import load_img
+
+from ..constants.BIDSPathConstants import NIFTI_EXTENSIONS, NIFTI_ERRORS
+from .BIDSPathCoreFunctions import find_extension, find_bids_suffix
 
 
 def IsNifti(src: Union[Text, PathLike]) -> bool:

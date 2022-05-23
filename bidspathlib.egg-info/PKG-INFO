@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: bidspathlib
+Version: 0.0.1
+Summary: Python package applying Path object machinery to BIDS datasets.
+Home-page: https://github.com/FrancoisNadeau/bids_path
+Author: francois
+Author-email: francois.nadeau1@gmail.com
+License: MIT
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Requires-Python: >=3.8
+License-File: LICENSE

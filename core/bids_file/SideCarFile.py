@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
 
 import json
 from os import PathLike
 from typing import Text, Union
 
-from bids_path.constants.BIDSPathConstants import BIDS_RECOMMENDED
-from bids_path.core.BIDSFileAbstract import BIDSFileAbstract
+from ...constants.BIDSPathConstants import BIDS_RECOMMENDED
+from ..BIDSFileAbstract import BIDSFileAbstract
 
 
 class SideCarFile(BIDSFileAbstract):

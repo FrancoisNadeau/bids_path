@@ -1,14 +1,15 @@
-#!/usr/bin/env python3
-
-from os import PathLike
-from typing import Text, Optional, Any, Union, Dict
 
 from nibabel import Nifti1Image
 from numpy.typing import ArrayLike
+from os import PathLike
+from typing import Text, Optional, Any, Union, Dict
 
-from bids_path.core.BIDSFileAbstract import BIDSFileAbstract
-from bids_path import docstring_parameter
-from bids_path.functions.BIDSFileFunctions import GetNiftiImage, GetImgHeader, GetTR, GetFrameTimes
+from ...general_methods import docstring_parameter
+from ...core.BIDSFileAbstract import BIDSFileAbstract
+from ...functions.BIDSFileFunctions import (
+    GetNiftiImage, GetImgHeader, GetTR, GetFrameTimes
+)
+
 
 
 class MRIFile(BIDSFileAbstract):

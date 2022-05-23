@@ -1,13 +1,15 @@
-#!/usr/bin/env python3
 
 """
-General purpose methods that can work independently of ``bids_path``.
+General purpose methods that can work independently of ``bidspathlib``.
 
 """
 
 import inspect
 import re
-from typing import Any, Dict, Iterable, List, NoReturn, Optional, Text, Tuple, Union
+from typing import (
+    Any, Dict, Iterable, List, NoReturn,
+    Optional, Text, Tuple, Union
+)
 
 
 def docstring_parameter(*sub: Union[Text, Iterable]):

@@ -1,13 +1,13 @@
-#!/usr/bin/env python3
 
 """
 Module exceptions.
 
 """
 
+from typing import List, Tuple
+
 from nibabel.filebasedimages import ImageFileError
 from nilearn._utils.exceptions import DimensionError
-from typing import List, Tuple
 
 _bases = (DimensionError, ImageFileError)
 

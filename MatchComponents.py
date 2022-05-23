@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 """
 Path matching based on BIDS entity and non-entity components.
@@ -10,7 +9,8 @@ import re
 from glob import iglob
 from os import PathLike
 from typing import Generator, Iterable, Optional, Text, Union
-from bids_path.functions.BIDSPathCoreFunctions import ComponentsGen
+
+from .functions.BIDSPathCoreFunctions import ComponentsGen
 
 
 def score_matches(path0: Union[Text, PathLike],
@@ -35,6 +35,7 @@ def MatchComponents(dst: Union[Text, PathLike],
     Notes:
         * All entities are named with their short form (e.g. "sub", "ses").
         * Both key and hyphen are included in each field's value.
+
         Example for user-specified (``kwargs``) and detected (``src``):
             {
                 'sub': 'sub-<number>', 'ses': 'ses-<number>',
@@ -47,15 +48,20 @@ def MatchComponents(dst: Union[Text, PathLike],
             Directory in which to start looking for matches.
             Can be used at user's discretion in combination
             with parameter ``recursive``.
+
         recursive: bool (Default=False)
             Whether to search recursively into directory ``dst``.
+
         src: str or PathLike, optional
             The path from which to lookup for matches.
+
         exclude: Iterable[str], optional
             Iterable representing string patterns that
             must not be present within the results.
+
         pattern: Iterable[str], optional
             Should match the '.gitignore' syntax.
+
         kwargs: Dict
             Used to overwrite or add different components than
             those found within path ``src``.

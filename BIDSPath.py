@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
 
 from os import PathLike
 from typing import Union, Text
 
-from bids_path import BIDSPathAbstract, BIDSFile, BIDSDir
+from .core.BIDSPathAbstract import BIDSPathAbstract
+from .core.bids_file.BIDSFile import BIDSFile
+from .core.bids_dir.BIDSDir import BIDSDir
 
 
 class BIDSPath(BIDSPathAbstract):

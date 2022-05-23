@@ -1,0 +1,1 @@
+nilearn@ git+https://github.com/nilearn/nilearn.git#egg=nilearn
