@@ -6,7 +6,7 @@ SETUP_REQUIRES = [
 
 setup(
     name='bidspathlib',
-    version='0.0.4',
+    version='0.0.5',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'
