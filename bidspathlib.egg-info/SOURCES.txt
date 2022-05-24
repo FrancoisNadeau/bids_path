@@ -33,6 +33,7 @@ constants/fMRIPrepEntities.py
 constants/__pycache__/BIDSPathConstants.cpython-38.pyc
 constants/__pycache__/Modality.cpython-38.pyc
 constants/__pycache__/__init__.cpython-38.pyc
+constants/__pycache__/bidspathlib_exceptions.cpython-38.pyc
 constants/__pycache__/fMRIPrepEntities.cpython-38.pyc
 core/BIDSDirAbstract.py
 core/BIDSFileAbstract.py

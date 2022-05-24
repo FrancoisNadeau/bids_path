@@ -10,7 +10,7 @@ from os import PathLike, stat_result
 from os.path import isdir, isfile, samefile
 from pathlib import Path
 from typing import (
-    Any, Dict, Generator, Iterable, List, NamedTuple,
+    Any, Dict, Generator, Iterable, List,
     Optional, Text, Tuple, Union
 )
 
@@ -80,7 +80,7 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         return ''.join(self._chars)
 
     @docstring_parameter(GetEntityStrings.__doc__)
-    def __get_entities__(self) -> NamedTuple:
+    def __get_entities__(self) -> Tuple:
         """{0}\n"""
         return GetEntityStrings(self)
 
@@ -1007,13 +1007,13 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
 
     @property
     @docstring_parameter(GetEntities.__doc__)
-    def entities(self) -> NamedTuple:
+    def entities(self) -> Tuple:
         """{0}\n"""
         return GetEntities(self)
 
     @property
     @docstring_parameter(GetEntityStrings.__doc__)
-    def entity_strings(self) -> NamedTuple:
+    def entity_strings(self) -> Tuple:
         """{0}\n"""
         return GetEntityStrings(self)
 

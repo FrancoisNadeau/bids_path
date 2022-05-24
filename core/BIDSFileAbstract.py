@@ -65,7 +65,7 @@ class BIDSFileAbstract(BIDSPathAbstract):
 
     @property
     def buf(self) -> BufferedIOBase:
-        with open(self, mode='rb', encoding=sys.getdefaultencoding()) as stream:
+        with open(self, mode='rb') as stream:
             return BytesIO(stream.read(self.stat.st_size))
 
     # General
