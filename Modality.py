@@ -9,7 +9,7 @@ from .BIDSPathConstants import MODALITIES
 MODALITY_FIELDS: Tuple = (
     'long_name', 'datatypes', 'name', 'long_description'
 )
-__path__ = [os.path.join('..', '__init__.py')]
+__path__ = [os.path.join('', '__init__.py')]
 
 
 class Modality(namedtuple('Modality', field_names=MODALITY_FIELDS)):

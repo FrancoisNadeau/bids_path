@@ -1,3 +1,7 @@
+"""
+Class representing a behavioural task in a BIDS dataset.
+
+"""
 
 import os
 from typing import Text, Union

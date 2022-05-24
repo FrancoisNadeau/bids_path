@@ -18,9 +18,6 @@ from os.path import basename, isdir
 from pathlib import Path
 from typing import List, Union, Text, Tuple
 
-from ..constants.BIDSPathConstants import DATATYPE_STRINGS, DD_FILE
-from .BIDSPathCoreFunctions import find_entity
-
 
 def IsBIDSRoot(src: Union[Text, PathLike]) -> bool:
     """
@@ -30,7 +27,7 @@ def IsBIDSRoot(src: Union[Text, PathLike]) -> bool:
     returns this sub dataset's top-level directory.
     """
     try:
-        return DD_FILE in os.listdir(str(src))
+        return 'dataset_description.json' in os.listdir(str(src))
     except NotADirectoryError:
         return False
 
@@ -42,7 +39,7 @@ def IsDatasetRoot(src: Union[Text, bytes, PathLike]) -> bool:
     """
     try:
         assert Path(src).is_dir()
-        return all((DD_FILE in os.listdir(src),
+        return all(('dataset_description.json' in os.listdir(src),
                     'derivatives' not in os.fspath(src)))
     except (AssertionError, FileNotFoundError, NotADirectoryError, TypeError):
         return False
@@ -61,7 +58,7 @@ def IsSessionDir(src: Union[Text, PathLike]) -> bool:
     Returns True if ``src`` points to a session-level directory.
 
     """
-    return basename(src) == find_entity(src, 'ses') \
+    return basename(src).startswith('ses-') \
         if isdir(src) else False
 
 
@@ -70,7 +67,11 @@ def IsDatatypeDir(src: Union[Text, PathLike]) -> bool:
     Returns True if ``src`` points to a datatype-level directory.
 
     """
-    return basename(src) in DATATYPE_STRINGS if isdir(src) else False
+    _datatypes = {
+        'anat', 'beh', 'dwi', 'eeg', 'fmap', 'func',
+        'ieeg', 'meg', 'micr', 'perf', 'pet'
+    }
+    return basename(src) in _datatypes if isdir(src) else False
 
 
 def IsDerivatives(src: Union[Text, PathLike]) -> bool:
@@ -110,3 +111,5 @@ __all__: List = [
     "IsDerivativesRoot", "IsFMRIPrepDerivatives",
     "__methods__"
 ]
+
+__path__: List = [os.path.join('..', '__init__.py')]

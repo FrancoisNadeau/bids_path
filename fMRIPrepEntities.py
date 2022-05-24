@@ -9,7 +9,7 @@ from collections import namedtuple
 from operator import itemgetter
 from typing import Dict, List, Set, Tuple, Type
 
-__path__ = [os.path.join('..', '__init__.py')]
+__path__ = [os.path.join('', '__init__.py')]
 
 
 FP_IMG_FILE_PATTERNS: Dict = {

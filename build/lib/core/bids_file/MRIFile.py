@@ -1,15 +1,21 @@
+"""
+Class for 3D MRI image files.
+
+"""
 
 import os
 from nibabel import Nifti1Image
+from nilearn._utils.niimg_conversions import check_niimg
 from numpy.typing import ArrayLike
 from typing import Text, Optional, Any, Union, Dict
 
 from ...general_methods import docstring_parameter
 from ...core.BIDSFileAbstract import BIDSFileAbstract
 from ...functions.BIDSFileFunctions import (
-    GetNiftiImage, GetImgHeader, GetTR, GetFrameTimes
+    GetImgHeader, GetTR, GetFrameTimes
 )
-from ...constants.bidspathlib_exceptions import Not3DError
+from ...functions.BIDSFileID import Is3D
+from ...bidspathlib_exceptions import Not3DError
 
 __path__ = [os.path.join('..', '__init__.py')]
 
@@ -18,6 +24,8 @@ class MRIFile(BIDSFileAbstract):
     """
     Class for 3D MRI image files.
 
+    This should only be instantiated on the path of a 4D nifti image file.
+    Otherwise, ``Not4DError`` is raised.
     """
     __slots__ = ()
     def __type__(self): return type(self)
@@ -35,17 +43,6 @@ class MRIFile(BIDSFileAbstract):
 
     def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)
-
-    @staticmethod
-    @docstring_parameter(GetNiftiImage.__doc__)
-    def get_img(src: Union[Text, os.PathLike]) -> Nifti1Image:
-        """{0}\n"""
-        img = GetNiftiImage(src)
-        try:
-            assert len(img.shape) == 3
-            return img
-        except AssertionError:
-            raise Not3DError
 
     @staticmethod
     @docstring_parameter(GetImgHeader.__doc__)
@@ -66,16 +63,12 @@ class MRIFile(BIDSFileAbstract):
         return GetTR(img)
 
     @property
-    @docstring_parameter(*(GetNiftiImage.__doc__,
-                           Nifti1Image.__doc__))
     def img(self) -> Union[Text, Nifti1Image]:
-        """{0}\n{1}\n"""
-        img = GetNiftiImage(self.path)
-        try:
-            assert len(img.shape) == 3
-            return img
-        except AssertionError:
-            raise Not3DError
+        """
+        Returns the corresponding nifti file's image.
+
+        """
+        return check_niimg(self.path.__fspath__(), ensure_ndim=3)
 
     @property
     @docstring_parameter(GetImgHeader.__doc__)

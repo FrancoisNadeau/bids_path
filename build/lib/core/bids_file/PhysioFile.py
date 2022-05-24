@@ -1,3 +1,7 @@
+"""
+Class for physiological data files.
+
+"""
 
 import os
 from typing import Text, Union

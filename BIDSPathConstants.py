@@ -26,6 +26,7 @@ References:
         https://github.com/bids-standard/bids-specification/blob/master/src/schema/objects/suffixes.yaml
 
 """
+
 import json
 import os
 import re
@@ -34,9 +35,8 @@ from glob import iglob
 from pathlib import Path
 from typing import Dict, List, Pattern, Text, Tuple, Type
 
-from nibabel.filebasedimages import ImageFileError
 
-__path__ = [os.path.join('..', '__init__.py')]
+__path__ = [os.path.join('', '__init__.py')]
 
 DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
 FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
@@ -79,12 +79,6 @@ Components: Type[Tuple] = namedtuple('Components', field_names=COMPONENTS_NAMES)
 Datatypes: Type[Tuple] = namedtuple('Datatypes', field_names=DATATYPE_STRINGS)
 BidsRecommended: Type[Tuple] = namedtuple('BidsRecommended', field_names=BIDS_RECOMMENDED)
 
-NIFTI_ERRORS: Tuple = (
-    AssertionError, AttributeError, StopIteration,
-    FileNotFoundError, TypeError, ImageFileError
-)
-GenericAlias: Type = type(List[int])
-
 __tuples__: Tuple = (
     DATATYPE_STRINGS, ENTITIES_ORDER, ENTITY_STRINGS,
     NIFTI_EXTENSIONS, SUFFIX_STRINGS, SPECIFIC_DATATYPE_FIELDS,
@@ -100,8 +94,6 @@ __namedtuples__: Tuple = (
 )
 __strings__: Tuple = (DD_FILE, TIME_FORMAT, BVE_MESSAGE)
 
-__others__: Tuple = (NIFTI_ERRORS, GenericAlias, SUFFIX_PATTERNS)
-
 __all__: List = [
     "DATATYPE_STRINGS", "ENTITIES_ORDER",
     "ENTITY_STRINGS", "ENTITY_DESC", "SES_DESCRIPTION",
@@ -113,7 +105,7 @@ __all__: List = [
     "ENTITY_STRINGS_DESC", "COMPONENTS_DESC", "Entities",
     "EntityStrings", "Components", "Datatypes",
     "BidsRecommended", "DD_FILE", "TIME_FORMAT",
-    "BVE_MESSAGE", "NIFTI_ERRORS", "GenericAlias",
+    "BVE_MESSAGE",
     "SUFFIX_PATTERNS", "__dicts__", "__namedtuples__",
-    "__others__", "__strings__", "__tuples__"
+    "__strings__", "__tuples__"
 ]

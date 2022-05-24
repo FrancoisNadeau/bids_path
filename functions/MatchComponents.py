@@ -8,16 +8,15 @@ import os
 import re
 from glob import iglob
 from os import PathLike
-from typing import Generator, Iterable, Optional, Text, Union
+from typing import Generator, Iterable, List, Optional, Text, Union
 
-from .functions.BIDSPathCoreFunctions import ComponentsGen
-
-__path__ = [os.path.join('..', '__init__.py')]
+from .core_functions import ComponentsGen
 
 
 def score_matches(path0: Union[Text, PathLike],
                   path1: Union[Text, PathLike]) -> int:
-    set0, set1 = set(ComponentsGen(path0)), set(ComponentsGen(path1))
+    set0 = set(ComponentsGen(path0))
+    set1 = set(ComponentsGen(path1))
     return len(set0.intersection(set1))
 
 
@@ -85,3 +84,8 @@ def MatchComponents(dst: Union[Text, PathLike],
     paths = ((p, score_matches(src, p)) for p in paths)
     yield from iter(p[0] for p in sorted(paths, key=lambda s: s[::-1],
                                          reverse=True))
+
+
+__all__: List = ["score_matches", "MatchComponents"]
+
+__path__ = [os.path.join('..', '__init__.py')]

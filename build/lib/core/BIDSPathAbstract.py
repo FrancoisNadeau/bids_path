@@ -10,14 +10,16 @@ from os import PathLike, stat_result
 from os.path import isdir, isfile, samefile
 from pathlib import Path
 from typing import (
-    Any, Dict, Generator, Iterable, List, NamedTuple,
+    Any, Dict, Generator, Iterable, List,
     Optional, Text, Tuple, Union
 )
+from unidecode import unidecode
 
 from ..general_methods import docstring_parameter, SetFromDict
 from ..BIDSPathLike import BIDSPathLike
-from ..MatchComponents import MatchComponents
-from ..constants import Modality
+from functions.MatchComponents import MatchComponents
+
+
 from ..functions.BIDSFileID import (
     IsNifti, Is4D, Is3D, IsEvent, IsBeh, IsPhysio, IsSidecar
 )
@@ -25,16 +27,17 @@ from ..functions.BIDSDirID import (
     IsBIDSRoot, IsDatasetRoot, IsSubjectDir, IsSessionDir, IsDatatypeDir,
     IsDerivatives, IsDerivativesRoot, IsFMRIPrepDerivatives
 )
-from ..functions.BIDSPathCoreFunctions import (
+from ..functions.core_functions import (
     find_datatype, find_entity, find_extension, find_bids_suffix
 )
 from ..functions.BIDSPathFunctions import (
-    DatasetName, GetBidsignore, FormattedCtime,
+    DatasetName, GetBidsignore, ctime_fmt,
     GetComponents, GetEntities, GetEntityStrings,
     DatasetDescription, DatatypeModality, BIDSRoot,
     DatasetRoot, DerivativesRoot, GetDerivativesNames,
     SesDir, SubDir, RelativeToRoot, Validate
 )
+from ..Modality import Modality
 
 __path__ = [os.path.join('..', '__init__.py')]
 
@@ -77,22 +80,19 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     @docstring_parameter(os.fspath.__doc__)
     def __fspath__(self) -> Text:
         """{0}\n"""
-        return ''.join(self._chars)
+        return os.fspath(''.join(self._chars))
 
     @docstring_parameter(GetEntityStrings.__doc__)
-    def __get_entities__(self) -> NamedTuple:
+    def __get_entities__(self) -> Tuple:
         """{0}\n"""
         return GetEntityStrings(self)
 
     @classmethod
     def __subclasshook__(cls, subclass: Any):
-        conditions = (hasattr(subclass, '__fspath__'),
-                      hasattr(subclass, '__get_entities__'))
-        return True if all(conditions) \
-            else NotImplemented
+        BIDSPathLike.__subclasshook__(subclass)
 
     def __subclasscheck__(self, subclass: Any) -> bool:
-        candidates = (str, PathLike, UserString)
+        candidates = (str, PathLike, BIDSPathLike, UserString)
         return any(c in candidates for c in subclass.mro())
 
     def __instancecheck__(self, instance: Any) -> bool:
@@ -106,6 +106,17 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
                           **kwargs) -> None:
         """{0}"""
         SetFromDict(cls, attrs, keys, default, **kwargs)
+
+    def __bytes__(self) -> bytes:
+        """
+        Returns the byte representation of the path.
+
+        Notes:
+            Only recommended to use under Unix.
+        """
+        _enc, _err = sys.getdefaultencoding(), 'strict'
+        _str = unidecode(''.join(self._chars))
+        return _str.encode(encoding=_enc, errors=_err)
 
 
     @property
@@ -132,11 +143,19 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     
     @property
     def _chars(self) -> List:
+        """
+        List storing the characters from the string.
+
+        """
         return list(self)
-    
+
     @property
-    def _default_encoding(self) -> Text:
-        return sys.getdefaultencoding()
+    def _ascii_chars(self) -> List:
+        """
+        List storing the characters from the string forced to ASCII.
+
+        """
+        return list(unidecode(''.join(self._chars)))
 
     def __repr__(self) -> Text:
         """
@@ -162,15 +181,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
 
         """
         return self.path.__reduce_ex__(protocol)
-
-    def __bytes__(self) -> bytes:
-        """
-        Returns the byte representation of the path.
-
-        Notes:
-            Only recommended to use under Unix.
-        """
-        return b''.join(map(lambda c: c.encode(sys.getdefaultencoding()), self))
 
     def __hash__(self) -> int:
         return self.path.__hash__()
@@ -397,14 +407,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         """{0}\n"""
         self.path.unlink(missing_ok=missing_ok)
 
-    @docstring_parameter(Path.mkdir.__doc__)
-    def mkdir(self, mode: int = 511,
-              parents: bool = False,
-              exist_ok: bool = False):
-        """{0}\n"""
-        self.path.mkdir(mode=mode, parents=parents,
-                        exist_ok=exist_ok)
-
     @docstring_parameter(Path.joinpath.__doc__)
     def joinpath(self, *args):
         """{0}\n"""
@@ -492,12 +494,12 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         return find_entity(src, 'sub')
 
     @staticmethod
-    @docstring_parameter(FormattedCtime.__doc__)
+    @docstring_parameter(ctime_fmt.__doc__)
     def formatted_ctime(src: Union[Text, PathLike],
                         time_fmt: Text = "%d %m %Y, %H:%M"
                         ) -> Text:
         """{0}\n"""
-        return FormattedCtime(src, time_fmt)
+        return ctime_fmt(src, time_fmt)
 
     @staticmethod
     @docstring_parameter(GetEntities.__doc__)
@@ -994,12 +996,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         return IsSessionDir(self)
 
     @property
-    @docstring_parameter(IsDerivatives.__doc__)
-    def is_derivatives(self) -> bool:
-        """{0}\n"""
-        return IsDerivatives(self)
-
-    @property
     @docstring_parameter(IsDatasetRoot.__doc__)
     def is_dataset_root(self) -> bool:
         """{0}\n"""
@@ -1007,13 +1003,13 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
 
     @property
     @docstring_parameter(GetEntities.__doc__)
-    def entities(self) -> NamedTuple:
+    def entities(self) -> Tuple:
         """{0}\n"""
         return GetEntities(self)
 
     @property
     @docstring_parameter(GetEntityStrings.__doc__)
-    def entity_strings(self) -> NamedTuple:
+    def entity_strings(self) -> Tuple:
         """{0}\n"""
         return GetEntityStrings(self)
 
@@ -1034,12 +1030,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     def dataset_description(self) -> Dict:
         """{0}\n"""
         return DatasetDescription(self)
-
-    @property
-    @docstring_parameter(DatatypeModality.__doc__)
-    def get_datatype_modality(self) -> Union[Text, Modality]:
-        """{0}\n"""
-        return DatatypeModality(self)
 
     @property
     @docstring_parameter(RelativeToRoot.__doc__)

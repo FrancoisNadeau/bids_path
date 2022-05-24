@@ -29,20 +29,19 @@ from .BIDSDirID import (
 )
 from bids_validator import BIDSValidator
 from more_itertools import flatten
-
-from ..constants.BIDSPathConstants import (
+from ..BIDSPathConstants import (
     BVE_MESSAGE, DD_FILE, TIME_FORMAT,
     Entities, EntityStrings, Components
 )
-from ..constants.Modality import Modalities, Modality
-from .BIDSPathCoreFunctions import (
-    find_datatype, ComponentsGen, EntityGen, EntityStringGen
+from ..Modality import Modalities, Modality
+from .core_functions import (
+    find_datatype, EntityGen, EntityStringsGen, ComponentsGen
 )
 
 
 def root_path() -> Text:
     """
-    Returns platform-independant root/drive directory.
+    Returns platform-independent root/drive directory.
 
     From the author:
     "On Linux this returns '/'.
@@ -201,8 +200,8 @@ def DatatypeModality(src: Union[Text, PathLike]
         return ''
 
 
-def FormattedCtime(src: Union[Text, PathLike],
-                   time_fmt: Text = TIME_FORMAT) -> Text:
+def ctime_fmt(src: Union[Text, PathLike],
+              time_fmt: Text = TIME_FORMAT) -> Text:
     """
     Returns a formatted string from the creation timestamp of path ``src``.
 
@@ -232,7 +231,7 @@ def GetEntityStrings(src: Union[Text, PathLike]
     Returns a ``namedtuple`` object of BIDS entities key-value string pairs.
 
     """
-    return EntityStrings(**dict(EntityStringGen(src)))
+    return EntityStrings(**dict(EntityStringsGen(src)))
 
 
 def GetComponents(src: Union[Text, PathLike]) -> Tuple:
@@ -300,16 +299,18 @@ __methods__: Tuple = (
     root_path, _add_root, RelativeToRoot,
     Validate, SubDir, SesDir, BIDSRoot, DatasetRoot,
     DerivativesRoot, DatasetName, DatasetDescription,
-    DatatypeModality, FormattedCtime, GetComponents,
+    DatatypeModality, ctime_fmt, GetComponents,
     GetEntities, GetEntityStrings, PathsByPatterns,
     GetBidsignore, GetDerivativesNames
 )
-__all__: List = (
+__all__: List = [
     "root_path", "_add_root", "RelativeToRoot",
     "Validate", "SubDir", "SesDir", "BIDSRoot", "DatasetRoot",
     "DerivativesRoot", "DatasetName", "DatasetDescription",
-    "DatatypeModality", "FormattedCtime", "GetComponents",
+    "DatatypeModality", "ctime_fmt", "GetComponents",
     "GetEntities", "GetEntityStrings", "PathsByPatterns",
     "GetBidsignore", "GetDerivativesNames",
     "__methods__"
-)
+]
+
+__path__: List = [os.path.join('..', '__init__.py')]

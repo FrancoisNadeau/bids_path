@@ -23,8 +23,11 @@ class Subject(BIDSDirAbstract):
         [1] <https://bids-specification.readthedocs.io/en/stable/02-common-principles.html>
 
     """
-    __slots__ = ()
+    __slots__, __fspath__ = (), BIDSDirAbstract.__fspath__
     def __type__(self): return type(self)
+
+    def __get_entities__(self):
+        return super().__get_entities__()
 
     def __instancecheck__(self, instance) -> bool:
         return all((hasattr(self, 'entities'),

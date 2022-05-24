@@ -6,6 +6,7 @@ Each function defined here acts as the base of
 other classes and methods in the ``bidspathlib`` package.
 """
 
+import os.path
 import re
 import warnings
 from os import PathLike
@@ -13,10 +14,9 @@ from pathlib import Path
 from typing import (
     Dict, Generator, List, Optional, Pattern, Text, Tuple, Union
 )
-
-from ..constants.BIDSPathConstants import (
-    DATATYPE_STRINGS, DEPRECATED_BIDS_SUFFIXES, ENTITIES_ORDER,
-    ENTITY_STRINGS, SUFFIX_PATTERNS
+from ..BIDSPathConstants import (
+    DATATYPE_STRINGS, DEPRECATED_BIDS_SUFFIXES, SUFFIX_PATTERNS,
+    ENTITIES_ORDER, ENTITY_STRINGS
 )
 
 
@@ -92,13 +92,15 @@ def find_bids_suffix(src: Union[Text, PathLike]) -> Text:
     """
     Returns a file's BIDS suffix, if any.
 
+    Raises ``FutureWarning`` if the path's suffix is deprecated.
+
     Args:
         src: str, os.PathLike or type(Path)
 
     Returns: str
 
     Notes:
-        Use ``bidspathlib.constants.SUFFIX_STRINGS``
+        Use ``bidspathlib.BIDSPathConstants.SUFFIX_STRINGS``
         to view supported BIDS suffixes.
 
     References:
@@ -138,7 +140,7 @@ def find_extension(src: Union[Text, PathLike]) -> Text:
         return ''
 
 
-def EntityGen(src: Union[Text, PathLike]) -> Generator:
+def EntityGen(src: Union[Text, os.PathLike]) -> Generator:
     """
     Generator yielding BIDS ``entity`` key-value pairs.
 
@@ -158,7 +160,7 @@ def EntityGen(src: Union[Text, PathLike]) -> Generator:
                 for e in enumerate(ENTITY_STRINGS))
 
 
-def EntityStringGen(src: Union[Text, PathLike]) -> Generator:
+def EntityStringsGen(src: Union[Text, os.PathLike]) -> Generator:
     """
     Generator yielding BIDS ``entity`` key-value pairs.
 
@@ -178,7 +180,7 @@ def EntityStringGen(src: Union[Text, PathLike]) -> Generator:
                 for e in enumerate(ENTITY_STRINGS))
 
 
-def ComponentsGen(src: Union[Text, PathLike], **kwargs) -> Generator:
+def ComponentsGen(src: Union[Text, os.PathLike], **kwargs) -> Generator:
     """
     Generator yielding all BIDS file name components strings.
 
@@ -206,7 +208,7 @@ def ComponentsGen(src: Union[Text, PathLike], **kwargs) -> Generator:
     """
     kwargs: Dict = kwargs if kwargs is not None else {}
     if src is not None:
-        entity_dict = dict(EntityStringGen(src))
+        entity_dict = dict(EntityStringsGen(src))
         entity_dict.update({'bids_suffix': find_bids_suffix(src),
                             'extension': find_extension(src),
                             'datatype': find_datatype(src)})
@@ -216,12 +218,7 @@ def ComponentsGen(src: Union[Text, PathLike], **kwargs) -> Generator:
     yield from (item for item in entity_dict.items())
 
 
-########################################################################
-# For directories
-########################################################################
-
-
-def ExtensionGen(src: Union[Text, PathLike]) -> Generator:
+def ExtensionGen(src: Union[Text, os.PathLike]) -> Generator:
     """
     Generator yielding BIDS extension strings.
 
@@ -240,7 +237,7 @@ def ExtensionGen(src: Union[Text, PathLike]) -> Generator:
     yield from (_ for _ in files)
 
 
-def SuffixGen(src: Union[Text, PathLike]) -> Generator:
+def SuffixGen(src: Union[Text, os.PathLike]) -> Generator:
     """
     Generator yielding BIDS ``suffix`` strings.
 
@@ -259,14 +256,14 @@ def SuffixGen(src: Union[Text, PathLike]) -> Generator:
 
 
 __methods__: Tuple = (
-    find_datatype, find_entity, find_extension,
-    find_bids_suffix, EntityGen, EntityStringGen,
-    ComponentsGen, ExtensionGen, SuffixGen
+    find_datatype, find_entity, find_extension, find_bids_suffix,
+    EntityGen, EntityStringsGen, ComponentsGen
 )
 
 __all__: List = [
     "find_datatype", "find_entity", "find_extension",
-    "find_bids_suffix", "EntityGen", "EntityStringGen", "ComponentsGen",
-    "ExtensionGen", "SuffixGen",
-    "__methods__"
+    "find_bids_suffix", "EntityGen", "EntityStringsGen",
+    "ExtensionGen", "SuffixGen", "ComponentsGen", "__methods__"
 ]
+
+__path__: List = [os.path.join('..', '__init__.py')]

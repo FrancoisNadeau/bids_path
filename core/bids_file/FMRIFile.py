@@ -5,20 +5,19 @@ Class for 4D MRI image files.
 
 import os
 from nibabel.nifti1 import Nifti1Image
+from nilearn._utils.niimg_conversions import check_niimg
 from numpy.typing import ArrayLike
 from os import PathLike
 from typing import Dict, Union, Text, Tuple
 
 from ...general_methods import docstring_parameter
-from ...functions.BIDSFileFunctions import GetEvents
-from ...constants.BIDSPathConstants import (
-    BidsRecommended, BIDS_RECOMMENDED
-)
-from ...constants.bidspathlib_exceptions import Not4DError
+from ...BIDSPathConstants import BidsRecommended, BIDS_RECOMMENDED
 from ..BIDSFileAbstract import BIDSFileAbstract
 from ...functions.BIDSFileFunctions import (
-    GetNiftiImage, GetImgHeader, GetTR, GetFrameTimes
+    GetImgHeader, GetTR, GetFrameTimes
 )
+from ...functions.BIDSFileID import IsBeh, IsEvent
+from ...functions.MatchComponents import MatchComponents
 
 __path__ = [os.path.join('..', '__init__.py')]
 
@@ -44,24 +43,6 @@ class FMRIFile(BIDSFileAbstract):
         super().__init__(src, *args, **kwargs)
 
     @staticmethod
-    @docstring_parameter(GetEvents.__doc__)
-    def get_events_file(src: Union[Text, PathLike], **kwargs
-                        ) -> Union[Text, PathLike]:
-        """{0}\n"""
-        return GetEvents(src, **kwargs)
-
-    @staticmethod
-    @docstring_parameter(GetNiftiImage.__doc__)
-    def get_img(src: Union[Text, PathLike]) -> Nifti1Image:
-        """{0}\n"""
-        img = GetNiftiImage(src)
-        try:
-            assert len(img.shape) == 4
-            return img
-        except AssertionError:
-            raise Not4DError
-
-    @staticmethod
     @docstring_parameter(GetImgHeader.__doc__)
     def get_img_header(img: Nifti1Image) -> Dict:
         """{0}\n"""
@@ -80,16 +61,13 @@ class FMRIFile(BIDSFileAbstract):
         return GetTR(img)
 
     @property
-    @docstring_parameter(*(GetNiftiImage.__doc__,
-                           Nifti1Image.__doc__))
     def img(self) -> Union[Text, Nifti1Image]:
-        """{0}\n{1}\n"""
-        img = GetNiftiImage(self.path)
-        try:
-            assert len(img.shape) == 4
-            return img
-        except AssertionError:
-            raise Not4DError
+        """
+        Returns the corresponding nifti file's image.
+
+        """
+
+        return check_niimg(self.path.__fspath__(), ensure_ndim=4)
 
     @property
     @docstring_parameter(GetImgHeader.__doc__)
@@ -116,22 +94,37 @@ class FMRIFile(BIDSFileAbstract):
         return self.get_anat_img(self.path, **kwargs)
 
     @property
-    @docstring_parameter(BIDSFileAbstract.get_beh_file.__doc__)
-    def beh_file(self, **kwargs) -> Union[Text, PathLike]:
-        """{0}\n"""
-        return self.get_beh_file(self.path, **kwargs)
+    def events_file(self) -> Union[Text, PathLike]:
+        """
+        Returns the functional scan's associated "events" file.
+
+        """
+        try:
+            keywords = dict(bids_suffix='events', extension='.tsv')
+            assert all((bool(self.task), self.task not in {'task-rest', 'rest'}))
+            events_path = MatchComponents(dst=self.path.parent, src=self.path, **keywords)
+            return self.subclass_dict()['EventsFile'](next(filter(IsEvent, events_path)))
+        except StopIteration:
+            return ''
+
+    @property
+    def beh_file(self) -> Union[Text, PathLike]:
+        """
+        Returns the functional scan's associated "events" file.
+
+        """
+        keywords = {'bids_suffix': 'beh', 'extension': '.tsv'}
+        beh_path = MatchComponents(dst=self.path.parent, src=self.path, **keywords)
+        try:
+            return self.subclass_dict()['BehFile'](next(filter(IsBeh, beh_path)))
+        except StopIteration:
+            return ''
 
     @property
     @docstring_parameter(BIDSFileAbstract.get_brain_mask.__doc__)
     def brain_mask_img(self, **kwargs) -> Union[Text, PathLike]:
         """{0}\n"""
         return self.get_brain_mask(self.path, **kwargs)
-
-    @property
-    @docstring_parameter(BIDSFileAbstract.get_events_file.__doc__)
-    def events_file(self, **kwargs) -> Union[Text, PathLike]:
-        """{0}\n"""
-        return self.get_events_file(self.path, **kwargs)
 
     @property
     def hardware_info(self) -> Tuple:

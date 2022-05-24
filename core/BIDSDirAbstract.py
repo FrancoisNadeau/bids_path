@@ -6,6 +6,7 @@ from os import PathLike
 from os.path import isdir
 from typing import Any, Iterator, Text, Union
 
+from ..BIDSPathConstants import ENTITY_STRINGS
 from ..core.BIDSPathAbstract import BIDSPathAbstract
 from ..core.bids_file.BIDSFile import BIDSFile
 
@@ -20,16 +21,20 @@ class BIDSDirAbstract(*_bases):
 
     """
 
-    __slots__, __bases__ = (), _bases
+    __slots__, __bases__ = ENTITY_STRINGS, _bases
+    __fspath__ = BIDSPathAbstract.__fspath__
     def __type__(self): return type(self)
+
+    def __get_entities__(self):
+        return super().__get_entities__()
 
     def __subclasscheck__(self, subclass) -> bool:
         return all((hasattr(subclass, 'entities'),
-                    self.isdir(subclass)))
+                    self.isdir(subclass.path)))
 
     def __instancecheck__(self, instance) -> bool:
         return all((hasattr(instance, 'entities'),
-                    isdir(instance)))
+                    isdir(instance.path)))
 
     def __getitem__(self, i: int): return tuple(self.iterdir())[i]
 
@@ -56,7 +61,8 @@ class BIDSDirAbstract(*_bases):
             (cls.is_subject_dir(src), 'Subject')
         )
         _cls = next(filter(lambda item: bool(item[0]), _mapper))
-        keywords = super().__get_entities__(src)._asdict()
+        keywords = dict(zip(cls.__slots__,
+                            super().__get_entities__(src)))
         subclass = subclass_dict[_cls[1]](src)
         subclass.__set_from_dict__(keywords)
         return subclass
@@ -68,9 +74,8 @@ class BIDSDirAbstract(*_bases):
         Files defined in the '.bidsignore' file are omitted.
 
         """
-        _cls = self.__bases__[0].__subclasses__()[1]
         _paths = set(self.path.glob(pattern)).difference(set(self.bidsignore))
-        yield from map(_cls.__prepare__, map(BIDSFile, _paths))
+        yield from map(BIDSDirAbstract.__prepare__, map(BIDSFile, _paths))
 
     def iterdir(self) -> Iterator:
         """
@@ -79,9 +84,8 @@ class BIDSDirAbstract(*_bases):
         Does not yield any result for the special paths
         '.' and '..'. and those defined in the '.bidsignore' file.
         """
-        _cls = self.__bases__[0].__subclasses__()[1]  # BIDSDirAbstract
         _paths = set(self.path.iterdir()).difference(set(self.bidsignore))
-        yield from map(_cls.__prepare__, map(BIDSFile, _paths))
+        yield from map(BIDSDirAbstract.__prepare__, map(BIDSFile, _paths))
 
     def rglob(self, pattern: Text) -> Iterator:
         """
@@ -94,6 +98,5 @@ class BIDSDirAbstract(*_bases):
 
         Returns: Iterator
         """
-        _cls = self.__bases__[0].__subclasses__()[1]
         _paths = set(self.path.rglob(pattern)).difference(set(self.bidsignore))
-        yield from map(_cls.__prepare__, map(BIDSFile, _paths))
+        yield from map(BIDSDirAbstract.__prepare__, map(BIDSFile, _paths))

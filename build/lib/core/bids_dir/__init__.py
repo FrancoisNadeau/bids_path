@@ -1,4 +1,9 @@
 
+"""
+Submodule for directories in a BIDS dataset.
+
+"""
+
 import os
 from typing import List
 

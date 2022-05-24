@@ -1,3 +1,7 @@
+"""
+``BIDSFileAbstract`` subclass storing events data along BIDS entities.
+
+"""
 
 import os
 from pandas import DataFrame, read_csv

@@ -1,3 +1,7 @@
+"""
+Class representing a JSON sidecar file in a BIDS dataset.
+
+"""
 
 import os
 import json

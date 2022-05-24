@@ -42,8 +42,11 @@ class BIDSDir(BIDSDirAbstract):
         ``Session``
         ``Subject``
     """
-    __slots__ = ()
+    __slots__, __fspath__ = (), BIDSDirAbstract.__fspath__
     def __type__(self): return type(self)
+
+    def __get_entities__(self):
+        return super().__get_entities__()
 
     def __new__(cls, *args, **kwargs):
         return cls.__prepare__(*args, **kwargs)

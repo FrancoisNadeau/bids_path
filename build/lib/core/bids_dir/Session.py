@@ -1,10 +1,14 @@
+"""
+Session level in a BIDS dataset directory hierarchy.
+
+"""
 
 import os
 from os import PathLike
 from os.path import join
 from typing import Tuple, Union
 
-from ...constants.BIDSPathConstants import (
+from ...BIDSPathConstants import (
     Datatypes, DATATYPES_DESCRIPTION,
     SES_DESCRIPTION, DATATYPE_STRINGS,
 )
@@ -24,11 +28,15 @@ class Session(BIDSDirAbstract):
     {0}\n
     """
     __slots__ = DATATYPE_STRINGS
+    __fspath__ = BIDSDirAbstract.__fspath__
     def __type__(self): return type(self)
+
+    def __get_entities__(self):
+        return super().__get_entities__()
 
     def __instancecheck__(self, instance):
         return all((hasattr(instance, 'entities'),
-                    self.is_session(instance)))
+                    self.is_session_dir(instance)))
 
     def __getitem__(self, value: Union[int, slice, str]):
         if isinstance(value, str):

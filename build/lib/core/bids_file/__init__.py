@@ -1,3 +1,7 @@
+"""
+Submodule for files in a BIDS dataset.
+
+"""
 
 import os
 from typing import List

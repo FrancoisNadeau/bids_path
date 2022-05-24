@@ -8,7 +8,7 @@ the former's functionality to functional and anatomical magnetic resonance imagi
 PACKAGE CONTENTS
 
     BIDSPath
-        Main metaclass factory and prefered instantiation method.
+        Main metaclass factory and preferred instantiation method.
 
     BIDSPathLike (Protocol)
         Extension of the abstract base class ``os.PathLike``.
@@ -93,6 +93,9 @@ PACKAGE CONTENTS
 
     general_methods
         General purpose methods that can work independently of ``bidspathlib``.
+
+    generators
+        Generator functions used to gather parts of the BIDS specification from a path.
 
     setup
 
