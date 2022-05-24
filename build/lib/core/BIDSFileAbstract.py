@@ -1,5 +1,6 @@
 
 import json
+import os
 import sys
 from io import BufferedIOBase, BytesIO
 from nibabel.nifti1 import Nifti1Image
@@ -14,6 +15,8 @@ from ..functions.BIDSFileFunctions import (
     GetAnat, GetBeh, GetBrainMask, GetEvents,
     GetMD5CheckSum, GetSidecar, ShapeLength, GetSha1Sum
 )
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class BIDSFileAbstract(BIDSPathAbstract):

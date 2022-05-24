@@ -1,4 +1,5 @@
 
+import os
 from collections import namedtuple
 from pprint import pprint
 from typing import List, Text, Tuple
@@ -8,6 +9,7 @@ from .BIDSPathConstants import MODALITIES
 MODALITY_FIELDS: Tuple = (
     'long_name', 'datatypes', 'name', 'long_description'
 )
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class Modality(namedtuple('Modality', field_names=MODALITY_FIELDS)):

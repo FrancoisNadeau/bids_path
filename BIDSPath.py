@@ -1,10 +1,12 @@
 
-from os import PathLike
+import os
 from typing import Union, Text
 
 from .core.BIDSPathAbstract import BIDSPathAbstract
 from .core.bids_file.BIDSFile import BIDSFile
 from .core.bids_dir.BIDSDir import BIDSDir
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class BIDSPath(BIDSPathAbstract):
@@ -18,7 +20,7 @@ class BIDSPath(BIDSPathAbstract):
         return self.__new__(*args, **kwargs)
 
     @classmethod
-    def __prepare__(cls, src: Union[Text, PathLike]):
+    def __prepare__(cls, src: Union[Text, os.PathLike]):
         _mapper = (
             (cls.isfile(src), BIDSFile),
             (cls.isdir(src), BIDSDir)
@@ -29,5 +31,5 @@ class BIDSPath(BIDSPathAbstract):
         subclass.__set_from_dict__(keywords)
         return subclass
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)

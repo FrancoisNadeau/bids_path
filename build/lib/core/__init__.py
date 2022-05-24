@@ -1,3 +1,4 @@
+import os.path
 
 from ..core.BIDSDirAbstract import BIDSDirAbstract
 from ..core.BIDSFileAbstract import BIDSFileAbstract
@@ -20,3 +21,5 @@ __all__ = [
     # BIDSDir
     "BIDSDir", "Datatype", "Session", "Subject"
 ]
+
+__path__ = [os.path.join('..', '..', '__init__.py')]

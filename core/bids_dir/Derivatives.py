@@ -1,9 +1,16 @@
+"""
+Class to access a participant's derived data.
 
+"""
+
+import os
 from os import PathLike
 from typing import Union, Text
 
 from ...constants.fMRIPrepEntities import FMRIPrepEntities
 from ...core.bids_dir.Subject import Subject
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class Derivatives(Subject):

@@ -1,8 +1,14 @@
+"""
+Class for physiological data files.
 
-from os import PathLike
+"""
+
+import os
 from typing import Text, Union
 
 from ...core.BIDSFileAbstract import BIDSFileAbstract
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class PhysioFile(BIDSFileAbstract):
@@ -18,5 +24,5 @@ class PhysioFile(BIDSFileAbstract):
                       self.is_physio_file(instance))
         return True if all(conditions) else False
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)

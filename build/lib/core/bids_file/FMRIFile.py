@@ -1,4 +1,5 @@
 
+import os
 from nibabel.nifti1 import Nifti1Image
 from numpy.typing import ArrayLike
 from os import PathLike
@@ -9,10 +10,13 @@ from ...functions.BIDSFileFunctions import GetEvents
 from ...constants.BIDSPathConstants import (
     BidsRecommended, BIDS_RECOMMENDED
 )
+from ...constants.bidspathlib_exceptions import Not4DError
 from ..BIDSFileAbstract import BIDSFileAbstract
 from ...functions.BIDSFileFunctions import (
     GetNiftiImage, GetImgHeader, GetTR, GetFrameTimes
 )
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class FMRIFile(BIDSFileAbstract):
@@ -43,7 +47,12 @@ class FMRIFile(BIDSFileAbstract):
     @docstring_parameter(GetNiftiImage.__doc__)
     def get_img(src: Union[Text, PathLike]) -> Nifti1Image:
         """{0}\n"""
-        return GetNiftiImage(src)
+        img = GetNiftiImage(src)
+        try:
+            assert len(img.shape) == 4
+            return img
+        except AssertionError:
+            raise Not4DError
 
     @staticmethod
     @docstring_parameter(GetImgHeader.__doc__)
@@ -68,7 +77,12 @@ class FMRIFile(BIDSFileAbstract):
                            Nifti1Image.__doc__))
     def img(self) -> Union[Text, Nifti1Image]:
         """{0}\n{1}\n"""
-        return GetNiftiImage(self.path)
+        img = GetNiftiImage(self.path)
+        try:
+            assert len(img.shape) == 4
+            return img
+        except AssertionError:
+            raise Not4DError
 
     @property
     @docstring_parameter(GetImgHeader.__doc__)

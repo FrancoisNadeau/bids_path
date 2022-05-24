@@ -16,15 +16,19 @@ These methods are implementations of the homologous method of
     ".bidsignore" file (if any) are automatically ignored.
 
     * [2] Automatic instantiation (like ``pathlib`` objects would)
-    The methods return already instantiated ``BIDSDir`` or ``BIDSFile`` objects.
+    The methods return already instantiated
+    ``BIDSDir`` or ``BIDSFile`` objects.
 
 
 """
 
+import os
 from os import PathLike
 from typing import Union, Text, Iterator
 
 from ..BIDSDirAbstract import BIDSDirAbstract
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class BIDSDir(BIDSDirAbstract):

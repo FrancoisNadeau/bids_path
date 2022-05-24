@@ -1,7 +1,11 @@
+"""
+Class for 3D MRI image files.
 
+"""
+
+import os
 from nibabel import Nifti1Image
 from numpy.typing import ArrayLike
-from os import PathLike
 from typing import Text, Optional, Any, Union, Dict
 
 from ...general_methods import docstring_parameter
@@ -9,13 +13,17 @@ from ...core.BIDSFileAbstract import BIDSFileAbstract
 from ...functions.BIDSFileFunctions import (
     GetNiftiImage, GetImgHeader, GetTR, GetFrameTimes
 )
+from ...constants.bidspathlib_exceptions import Not3DError
 
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class MRIFile(BIDSFileAbstract):
     """
     Class for 3D MRI image files.
 
+    This should only be instantiated on the path of a 4D nifti image file.
+    Otherwise, ``Not4DError`` is raised.
     """
     __slots__ = ()
     def __type__(self): return type(self)
@@ -31,14 +39,19 @@ class MRIFile(BIDSFileAbstract):
     def _fset(self, key: Text, default: Optional[Any] = None) -> Any:
         return object.__setattr__(self, key, self._fget(key, default))
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)
 
     @staticmethod
     @docstring_parameter(GetNiftiImage.__doc__)
-    def get_img(src: Union[Text, PathLike]) -> Nifti1Image:
+    def get_img(src: Union[Text, os.PathLike]) -> Nifti1Image:
         """{0}\n"""
-        return GetNiftiImage(src)
+        img = GetNiftiImage(src)
+        try:
+            assert len(img.shape) == 3
+            return img
+        except AssertionError:
+            raise Not3DError
 
     @staticmethod
     @docstring_parameter(GetImgHeader.__doc__)
@@ -63,7 +76,12 @@ class MRIFile(BIDSFileAbstract):
                            Nifti1Image.__doc__))
     def img(self) -> Union[Text, Nifti1Image]:
         """{0}\n{1}\n"""
-        return GetNiftiImage(self.path)
+        img = GetNiftiImage(self.path)
+        try:
+            assert len(img.shape) == 3
+            return img
+        except AssertionError:
+            raise Not3DError
 
     @property
     @docstring_parameter(GetImgHeader.__doc__)

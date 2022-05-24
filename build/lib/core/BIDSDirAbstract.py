@@ -11,6 +11,8 @@ from ..core.bids_file.BIDSFile import BIDSFile
 
 _bases = (BIDSPathAbstract, Collection)
 
+__path__ = [os.path.join('..', '__init__.py')]
+
 
 class BIDSDirAbstract(*_bases):
     """

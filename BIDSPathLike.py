@@ -5,13 +5,14 @@ Extension of the abstract base class ``os.PathLike`` for BIDS datasets.
 """
 
 import collections
+import os
 from abc import abstractmethod
-from os import PathLike
 from typing import runtime_checkable, Protocol, Union, Text, Container
 
 from .constants.BIDSPathConstants import GenericAlias
 
 _check_methods = getattr(collections._collections_abc, '_check_methods')
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 @runtime_checkable
@@ -29,7 +30,7 @@ class BIDSPathLike(Protocol):
     @classmethod
     def __subclasshook__(cls, subclass):
         methods = ('__fspath__', '__get_entities__')
-        if cls is PathLike:
+        if cls is os.PathLike:
             return _check_methods(subclass, *methods)
         return NotImplemented
 

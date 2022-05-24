@@ -1,4 +1,9 @@
+"""
+Subject level in a BIDS dataset directory hierarchy.
 
+"""
+
+import os
 import warnings
 from os import PathLike
 from pandas import Series
@@ -6,6 +11,8 @@ from typing import Dict, Union
 
 from ...core.BIDSDirAbstract import BIDSDirAbstract
 from ...core.bids_dir.Session import Session
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class Subject(BIDSDirAbstract):

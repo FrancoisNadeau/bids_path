@@ -1,9 +1,11 @@
 
-from os import PathLike
+import os
 from pandas import DataFrame, read_csv
 from typing import Text, Union
 
 from ..BIDSFileAbstract import BIDSFileAbstract
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class EventsFile(BIDSFileAbstract):
@@ -28,7 +30,7 @@ class EventsFile(BIDSFileAbstract):
         return all((hasattr(instance, 'entities'),
                     self.is_event_file(instance)))
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)
 
     @property

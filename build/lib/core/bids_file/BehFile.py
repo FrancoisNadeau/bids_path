@@ -1,8 +1,10 @@
 
-from os import PathLike
+import os
 from typing import Text, Union
 
 from ..BIDSFileAbstract import BIDSFileAbstract
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class BehFile(BIDSFileAbstract):
@@ -19,5 +21,5 @@ class BehFile(BIDSFileAbstract):
                       self.is_beh_file(instance))
         return True if all(conditions) else False
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)

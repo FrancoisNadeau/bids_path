@@ -1,5 +1,10 @@
-#!/usr/bin env python3
 
+"""
+Invariable values used in the BIDSPath package.
+
+"""
+
+import os
 from collections import namedtuple
 from pprint import pprint
 from typing import Dict, List, Tuple, Type
@@ -11,6 +16,8 @@ from .Modality import *
 from .BIDSPathConstants import *
 from .bidspathlib_exceptions import *
 from .fMRIPrepEntities import *
+
+__path__ = [os.path.join('..', '..', '__init__.py')]
 
 BIDS_DOCS: Dict = {
     'BIDS_datatypes_descriptions': DATATYPES_DESCRIPTION,
@@ -47,7 +54,7 @@ BidsDocs: Type[Tuple] = namedtuple('BIDSDocs', field_names=BD_FIELDS)
 BIDSDocs: Tuple = BidsDocs(**BIDS_DOCS)
 
 __all__: List = [
-    "BIDSPathConstants", "bidspathlib_exceptions.py", "Modality", "Modalities",
+    "BIDSPathConstants", "bidspathlib_exceptions", "Modality", "Modalities",
     "fMRIPrepEntities", "FMRIPrepEntities", "BIDS_DOCS", "LC_DOCS",
     "LC_FIELDS", "BD_FIELDS", "LCStrategyDocs", "BidsDocs", "BIDSDocs",
     # BIDSPathConstants

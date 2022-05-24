@@ -14,10 +14,12 @@ However, one can easily perform the desired operations by writing
 to a different location on disk or in-memory stream.
 """
 
-from os import PathLike
+import os
 from typing import Union, Text
 
 from ..BIDSFileAbstract import BIDSFileAbstract
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class BIDSFile(BIDSFileAbstract):
@@ -43,5 +45,5 @@ class BIDSFile(BIDSFileAbstract):
     def __call__(self, *args, **kwargs):
         return self.__new__(*args, **kwargs)
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)

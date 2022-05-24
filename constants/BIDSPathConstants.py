@@ -7,7 +7,7 @@ type hinting shortcuts and exceptions*
 for the BIDSPath package.
 
 Notes:
-    * See file ``constants.exceptions``.
+    * See file ``constants.bidspathlib_exceptions``.
 
 References:
     BIDS_RECOMMENDED:
@@ -36,6 +36,8 @@ from typing import Dict, List, Pattern, Text, Tuple, Type
 
 from nibabel.filebasedimages import ImageFileError
 
+__path__ = [os.path.join('..', '__init__.py')]
+
 DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
 FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
     sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
@@ -50,8 +52,6 @@ BIDS_RECOMMENDED, NO_EXTENSION_FILES, NON_ENTITY_COMPONENTS = \
 
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
-
-
 
 MODALITIES: Dict = json.loads(MODALITIES_PATH.read_text())
 ENTITY_DESC: Dict = json.loads(E_DESC_PATH.read_text())

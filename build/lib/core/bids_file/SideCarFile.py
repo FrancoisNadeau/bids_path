@@ -1,10 +1,12 @@
 
+import os
 import json
-from os import PathLike
 from typing import Text, Union
 
 from ...constants.BIDSPathConstants import BIDS_RECOMMENDED
 from ..BIDSFileAbstract import BIDSFileAbstract
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class SideCarFile(BIDSFileAbstract):
@@ -32,6 +34,6 @@ class SideCarFile(BIDSFileAbstract):
                             indent=indent, **kwargs)
         print(viewer)
 
-    def __init__(self, src: Union[Text, PathLike], **kwargs):
+    def __init__(self, src: Union[Text, os.PathLike], **kwargs):
         super().__init__(src, **kwargs)
         self.__set_from_dict__(super().sidecar)

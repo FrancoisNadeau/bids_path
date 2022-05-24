@@ -4,6 +4,7 @@ import pandas as pd
 import pickle
 import sys
 from abc import ABC
+from bids_validator import BIDSValidator
 from collections import UserString
 from os import PathLike, stat_result
 from os.path import isdir, isfile, samefile
@@ -13,32 +14,29 @@ from typing import (
     Optional, Text, Tuple, Union
 )
 
-from general_methods import docstring_parameter
-from BIDSPathLike import BIDSPathLike
-from MatchComponents import MatchComponents
-from constants import Modality
-from functions.BIDSFileID import (
+from ..general_methods import docstring_parameter, SetFromDict
+from ..BIDSPathLike import BIDSPathLike
+from ..MatchComponents import MatchComponents
+from ..constants import Modality
+from ..functions.BIDSFileID import (
     IsNifti, Is4D, Is3D, IsEvent, IsBeh, IsPhysio, IsSidecar
 )
-from functions.BIDSDirID import (
+from ..functions.BIDSDirID import (
     IsBIDSRoot, IsDatasetRoot, IsSubjectDir, IsSessionDir, IsDatatypeDir,
     IsDerivatives, IsDerivativesRoot, IsFMRIPrepDerivatives
 )
-from functions.BIDSPathCoreFunctions import (
+from ..functions.BIDSPathCoreFunctions import (
     find_datatype, find_entity, find_extension, find_bids_suffix
 )
-from functions.BIDSPathFunctions import (
+from ..functions.BIDSPathFunctions import (
     DatasetName, GetBidsignore, FormattedCtime,
     GetComponents, GetEntities, GetEntityStrings,
     DatasetDescription, DatatypeModality, BIDSRoot,
     DatasetRoot, DerivativesRoot, GetDerivativesNames,
     SesDir, SubDir, RelativeToRoot, Validate
 )
-from general_methods import SetFromDict
-from bids_validator import BIDSValidator
 
-
-# _bases = (UserString, BIDSPathLike, ABC)
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
@@ -199,9 +197,9 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         if item in self.__slots__ or hasattr(self, item):
             return object.__getattribute__(self, item)
         elif isinstance(item, (int, slice)):
-            if item < 0 or item >= len(self.data):
+            if item < 0 or item >= len(self):
                 raise IndexError(item)
-            return self.data[item]
+            return self[item]
         else:
             raise AttributeError
 
@@ -339,7 +337,7 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     @docstring_parameter(samefile.__doc__)
     def samefile(self, other_path: Union[Text, PathLike]) -> bool:
         """{0}\n"""
-        return samefile(self.data, str(other_path))
+        return samefile(self, str(other_path))
 
     @docstring_parameter(Path.mkdir.__doc__)
     def mkdir(self, mode: int = 511,
@@ -897,13 +895,13 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     @docstring_parameter(find_bids_suffix.__doc__)
     def bids_suffix(self) -> Text:
         """{0}\n"""
-        return find_bids_suffix(self.data)
+        return find_bids_suffix(self)
 
     @property
     @docstring_parameter(find_extension.__doc__)
     def extension(self) -> Text:
         """{0}\n"""
-        return find_extension(self.data)
+        return find_extension(self)
 
     @property
     @docstring_parameter(find_datatype.__doc__)
@@ -939,7 +937,7 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     @docstring_parameter(IsBeh.__doc__)
     def is_beh(self) -> bool:
         """{0}\n"""
-        return IsBeh(self.data)
+        return IsBeh(self)
 
     @property
     @docstring_parameter(IsEvent.__doc__)
@@ -1063,40 +1061,40 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     @docstring_parameter(Validate.__doc__)
     def is_bids(self) -> bool:
         """{0}\n"""
-        return Validate(self.data)
+        return Validate(self)
 
     @property
     @docstring_parameter(BIDSRoot.__doc__)
     def bids_root(self) -> Union[Text, PathLike]:
         """{0}\n"""
-        return BIDSRoot(self.data)
+        return BIDSRoot(self)
 
     @property
     @docstring_parameter(DatasetRoot.__doc__)
     def dataset_root(self) -> Union[Text, PathLike]:
         """{0}\n"""
-        return DatasetRoot(self.data)
+        return DatasetRoot(self)
 
     @property
     @docstring_parameter(DerivativesRoot.__doc__)
     def derivatives_root(self) -> Union[Text, PathLike]:
         """{0}\n"""
-        return DerivativesRoot(self.data)
+        return DerivativesRoot(self)
 
     @property
     @docstring_parameter(GetDerivativesNames.__doc__)
     def derivatives_names(self) -> Tuple:
         """{0}\n"""
-        return GetDerivativesNames(self.data)
+        return GetDerivativesNames(self)
 
     @property
     @docstring_parameter(SesDir.__doc__)
     def ses_dir(self) -> Union[Text, PathLike]:
         """{0}\n"""
-        return SesDir(self.data)
+        return SesDir(self)
 
     @property
     @docstring_parameter(SubDir.__doc__)
     def sub_dir(self) -> Union[Text, PathLike]:
         """{0}\n"""
-        return SubDir(self.data)
+        return SubDir(self)

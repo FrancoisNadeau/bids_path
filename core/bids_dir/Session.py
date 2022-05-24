@@ -1,4 +1,9 @@
+"""
+Session level in a BIDS dataset directory hierarchy.
 
+"""
+
+import os
 from os import PathLike
 from os.path import join
 from typing import Tuple, Union
@@ -11,6 +16,8 @@ from ...core.BIDSDirAbstract import BIDSDirAbstract
 
 from ...core.bids_dir.Datatype import Datatype
 from ...general_methods import docstring_parameter
+
+__path__ = [os.path.join('..', '__init__.py')]
 
 
 @docstring_parameter(SES_DESCRIPTION)

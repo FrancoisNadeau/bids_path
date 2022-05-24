@@ -36,6 +36,8 @@ from ..functions.BIDSPathFunctions import (
     SesDir, SubDir, RelativeToRoot, Validate
 )
 
+__path__ = [os.path.join('..', '__init__.py')]
+
 
 class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     """
@@ -114,7 +116,7 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         References:
             <https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file>
         """
-        meta_path = os.path.join(selfset_root, 'participants.tsv')
+        meta_path = os.path.join(self.dataset_root, 'participants.tsv')
         print(f"Path {meta_path} exists: {os.path.exists(meta_path)}")
         if os.path.exists(meta_path):
             return pd.read_csv(str(meta_path), sep='\t',

@@ -12,6 +12,8 @@ from typing import Generator, Iterable, Optional, Text, Union
 
 from .functions.BIDSPathCoreFunctions import ComponentsGen
 
+__path__ = [os.path.join('..', '__init__.py')]
+
 
 def score_matches(path0: Union[Text, PathLike],
                   path1: Union[Text, PathLike]) -> int:

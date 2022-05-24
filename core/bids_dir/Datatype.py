@@ -1,15 +1,19 @@
 
+"""
+Datatype level in a BIDS dataset directory hierarchy.
+
+"""
+import os
 from operator import itemgetter
 from os import PathLike
 from typing import Any, Dict, Optional, Text, Union
 
 from ..BIDSDirAbstract import BIDSDirAbstract
 from ...constants.BIDSPathConstants import DATATYPES_DESCRIPTION
+
+__path__ = [os.path.join('..', '__init__.py')]
+
 DATATYPE_BASE_FIELDS = ('description', 'long_name', 'specific')
-# DATATYPE_SPEC_FIELDS = (
-#     'name', 'bids_suffixes', 'extensions', 'datatypes', 'entities'
-# )
-# DatatypeSpec = namedtuple('DatatypeSpec', field_names=DATATYPE_SPEC_FIELDS)
 
 
 class Datatype(BIDSDirAbstract):

@@ -1,7 +1,11 @@
 
 """
+Path components-based file and directory identification in a BIDS dataset.
+
 Functions to identify components of the BIDS-Schema within
 a file or directory's name or path in a dataset.
+This allows easy navigation through files and directories by
+mapping the BIDS dataset hierarchy.
 
 See <https://github.com/bids-standard/bids-schema/tree/main/versions/latest>
 for more details.
@@ -17,7 +21,7 @@ from os.path import basename, exists, getctime
 from pathlib import Path
 from typing import (
     Dict, Generator, Iterable, Iterator,
-    List, NamedTuple, Optional, Text, Tuple, Union
+    List, Optional, Text, Tuple, Union
 )
 
 from .BIDSDirID import (
@@ -214,7 +218,7 @@ def FormattedCtime(src: Union[Text, PathLike],
     return file_time.strftime(time_fmt)
 
 
-def GetEntities(src: Union[Text, PathLike]) -> NamedTuple:
+def GetEntities(src: Union[Text, PathLike]) -> Tuple:
     """
     Returns a ``namedtuple`` object of BIDS entities.
 
@@ -223,7 +227,7 @@ def GetEntities(src: Union[Text, PathLike]) -> NamedTuple:
 
 
 def GetEntityStrings(src: Union[Text, PathLike]
-                     ) -> NamedTuple:
+                     ) -> Tuple:
     """
     Returns a ``namedtuple`` object of BIDS entities key-value string pairs.
 
