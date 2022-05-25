@@ -9,11 +9,11 @@ from typing import List
 
 from ..BIDSDirAbstract import BIDSDirAbstract
 from ..bids_dir import (
-    BIDSDir, Datatype, Derivatives, Session, Subject
+    BIDSDir, Datatype, Dataset, Derivatives, Session, Subject
 )
 
 __all__: List = [
-    "BIDSDirAbstract", "BIDSDir", "Datatype",
+    "BIDSDirAbstract", "BIDSDir", "Dataset", "Datatype",
     "Session", "Subject", "Derivatives"
 ]
 

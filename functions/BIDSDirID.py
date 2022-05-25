@@ -53,7 +53,7 @@ def IsSubjectDir(src: Union[Text, PathLike]) -> bool:
     Returns True if ``src`` points to a subject-level directory.
 
     """
-    return basename(src).startswith('sub-') if isdir(src) else False
+    return Path(src).name.startswith('sub-') if isdir(src) else False
 
 
 def IsSessionDir(src: Union[Text, PathLike]) -> bool:
