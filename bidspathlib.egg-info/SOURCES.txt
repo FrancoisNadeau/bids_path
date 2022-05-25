@@ -44,6 +44,7 @@ core/__pycache__/BIDSFileAbstract.cpython-38.pyc
 core/__pycache__/BIDSPathAbstract.cpython-38.pyc
 core/__pycache__/__init__.cpython-38.pyc
 core/bids_dir/BIDSDir.py
+core/bids_dir/Dataset.py
 core/bids_dir/Datatype.py
 core/bids_dir/Derivatives.py
 core/bids_dir/Session.py
