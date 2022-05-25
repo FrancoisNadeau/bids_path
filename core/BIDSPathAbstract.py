@@ -117,7 +117,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
             <https://bids-specification.readthedocs.io/en/stable/03-modality-agnostic-files.html#participants-file>
         """
         meta_path = os.path.join(self.dataset_root, 'participants.tsv')
-        print(f"Path {meta_path} exists: {os.path.exists(meta_path)}")
         if os.path.exists(meta_path):
             return pd.read_csv(str(meta_path), sep='\t',
                                index_col='participant_id')
@@ -613,32 +612,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         return IsBeh(src)
 
     @staticmethod
-    @docstring_parameter(IsBIDSRoot.__doc__)
-    def is_fmriprep_derivative(src: Union[Text, PathLike]
-                               ) -> bool:
-        """{0}\n"""
-        return IsFMRIPrepDerivatives(src)
-
-    @staticmethod
-    @docstring_parameter(IsSubjectDir.__doc__)
-    def is_subject_dir(src: Union[Text, PathLike]) -> bool:
-        """{0}\n"""
-        return IsSubjectDir(src)
-
-    @staticmethod
-    @docstring_parameter(IsSessionDir.__doc__)
-    def is_session_dir(src: Union[Text, PathLike]) -> bool:
-        """{0}\n"""
-        return IsSessionDir(src)
-
-    @staticmethod
-    @docstring_parameter(IsDatatypeDir.__doc__)
-    def is_datatype_dir(src: Union[Text, PathLike]
-                        ) -> bool:
-        """{0}\n"""
-        return IsDatatypeDir(src)
-
-    @staticmethod
     @docstring_parameter(IsNifti.__doc__)
     def is_nifti_file(src: Union[Text, PathLike]) -> bool:
         """{0}\n"""
@@ -671,10 +644,38 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         return IsSidecar(src)
 
     @staticmethod
-    @docstring_parameter(IsDerivativesRoot.__doc__)
+    @docstring_parameter(IsBIDSRoot.__doc__)
+    def is_fmriprep_derivative(src: Union[Text, PathLike]
+                               ) -> bool:
+        """{0}\n"""
+        return IsFMRIPrepDerivatives(src)
+
+    @staticmethod
+    @docstring_parameter(IsSubjectDir.__doc__)
+    def is_subject_dir(src: Union[Text, PathLike]) -> bool:
+        """{0}\n"""
+        return IsSubjectDir(src)
+
+    @staticmethod
+    @docstring_parameter(IsSessionDir.__doc__)
+    def is_session_dir(src: Union[Text, PathLike]) -> bool:
+        """{0}\n"""
+        return IsSessionDir(src)
+
+    @staticmethod
+    @docstring_parameter(IsDatatypeDir.__doc__)
+    def is_datatype_dir(src: Union[Text, PathLike]
+                        ) -> bool:
+        """{0}\n"""
+        return IsDatatypeDir(src)
+
+    @staticmethod
     def is_derivatives_root_dir(src: Union[Text, PathLike]
                                 ) -> bool:
-        """{0}\n"""
+        """
+        Returns True if ``src`` points to a derived dataset's root directory.
+
+        """
         return IsDerivativesRoot(src)
 
     @staticmethod
@@ -683,6 +684,12 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
                             ) -> bool:
         """{0}\n"""
         return IsDatasetRoot(src)
+
+    @staticmethod
+    @docstring_parameter(IsBIDSRoot.__doc__)
+    def is_bids_root_dir(src: Union[Text, PathLike]) -> bool:
+        """{0}\n"""
+        return IsBIDSRoot(src)
 
     @staticmethod
     @docstring_parameter(IsDerivatives.__doc__)
@@ -698,8 +705,7 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         """{0}\n"""
         return DatasetRoot(src)
 
-        # Pathlib properties
-
+    # Pathlib properties
     @property
     @docstring_parameter(Path.drive.__doc__)
     def drive(self) -> Union[Text, PathLike]:
@@ -920,12 +926,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     def is_datatype(self) -> bool:
         """{0}\n"""
         return IsDatatypeDir(self)
-
-    @property
-    @docstring_parameter(IsDerivatives.__doc__)
-    def is_derivatives(self) -> bool:
-        """{0}\n"""
-        return IsDerivatives(self)
 
     @property
     @docstring_parameter(IsDerivativesRoot.__doc__)

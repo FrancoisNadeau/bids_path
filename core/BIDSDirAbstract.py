@@ -8,6 +8,7 @@ from typing import Any, Iterator, Text, Union
 
 from ..core.BIDSPathAbstract import BIDSPathAbstract
 from ..core.bids_file.BIDSFile import BIDSFile
+from ..constants.BIDSPathConstants import ENTITY_STRINGS
 
 _bases = (BIDSPathAbstract, Collection)
 
@@ -53,10 +54,11 @@ class BIDSDirAbstract(*_bases):
         _mapper = (
             (cls.is_datatype_dir(src), 'Datatype'),
             (cls.is_session_dir(src), 'Session'),
-            (cls.is_subject_dir(src), 'Subject')
+            (cls.is_subject_dir(src), 'Subject'),
+            (cls.is_bids_root_dir(src), 'Dataset')
         )
         _cls = next(filter(lambda item: bool(item[0]), _mapper))
-        keywords = super().__get_entities__(src)._asdict()
+        keywords = dict(zip(ENTITY_STRINGS, super().__get_entities__(src)))
         subclass = subclass_dict[_cls[1]](src)
         subclass.__set_from_dict__(keywords)
         return subclass

@@ -6,7 +6,7 @@ SETUP_REQUIRES = [
 
 setup(
     name='bidspathlib',
-    version='0.0.6.2',
+    version='0.0.6.3',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'
@@ -19,6 +19,7 @@ setup(
     classifiers=[
         'Intended Audience :: Science/Research',
         'Intended Audience :: Developers',
+        'Operating System :: Microsoft :: Windows',
         'Operating System :: MacOS',
         'Operating System :: POSIX',
         'Operating System :: Unix',
