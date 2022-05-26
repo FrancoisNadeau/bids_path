@@ -8,7 +8,7 @@ EMAIL = 'francois.nadeau1@gmail.com'
 
 setup(
     name='bidspathlib',
-    version='0.0.6.8',
+    version='0.0.7.7',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'

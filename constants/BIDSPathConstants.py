@@ -32,18 +32,26 @@ import re
 from collections import namedtuple
 from glob import iglob
 from pathlib import Path
-from typing import Dict, List, Pattern, Text, Tuple, Type
+from typing import Dict, List, Optional, Pattern, Text, Tuple, Type, Union
 
 from nibabel.filebasedimages import ImageFileError
 
 __path__ = [os.path.join('..', '__init__.py')]
 
-DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
-FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
-    sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
+
+def absolute_relative_to(src: Union[Text, os.PathLike],
+                         dst: Optional[Union[Text, os.PathLike]] = None
+                         ) -> Union[Text, os.PathLike]:
+    dst = dst if dst else Path.cwd()
+    return Path(src).absolute().relative_to(dst).absolute()
+
+
+DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH,\
+N_DESC_PATH, FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
+    sorted(map(absolute_relative_to,
                iglob(os.path.join('**', 'json_docs', '**'))))
 
-base_data_strings = json.loads(BASE_DATA_PATH.read_text())
+base_data_strings: Dict = json.loads(BASE_DATA_PATH.read_text())
 
 ENTITY_FIELDS, DATATYPE_STRINGS, ENTITIES_ORDER, ENTITY_STRINGS, \
 NIFTI_EXTENSIONS, SUFFIX_STRINGS, SPECIFIC_DATATYPE_FIELDS,\

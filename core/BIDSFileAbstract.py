@@ -1,7 +1,6 @@
 
 import json
 import os
-import sys
 from io import BufferedIOBase, BytesIO
 from nibabel.nifti1 import Nifti1Image
 from os import PathLike
@@ -58,7 +57,8 @@ class BIDSFileAbstract(BIDSPathAbstract):
             (super().is_sidecar_file(src), 'SideCarFile')
         )
         _cls = next(filter(lambda item: bool(item[0]), _mapper))
-        keywords = super().__get_entities__(src)._asdict()
+        keywords = dict(zip(ENTITY_STRINGS,
+                            super().__get_entities__(src)))
         subclass = subclass_dict[_cls[1]](src)
         subclass.__set_from_dict__(keywords)
         return subclass
@@ -89,13 +89,6 @@ class BIDSFileAbstract(BIDSPathAbstract):
                           unzip: bool = False) -> Text:
         """{0}\n"""
         return GetSha1Sum(src, unzip=unzip)
-
-    # @staticmethod
-    # @docstring_parameter(GetFMRI.__doc__)
-    # def get_fmri_img(src: Union[Text, PathLike], **kwargs
-    #                  ) -> PathLike:
-    #     """{0}\n"""
-    #     return GetFMRI(src, **kwargs)
 
     def md5_checksum(self, unzip: bool = False) -> Text:
         """

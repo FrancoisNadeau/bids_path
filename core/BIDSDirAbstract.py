@@ -55,7 +55,8 @@ class BIDSDirAbstract(*_bases):
             (cls.is_datatype_dir(src), 'Datatype'),
             (cls.is_session_dir(src), 'Session'),
             (cls.is_subject_dir(src), 'Subject'),
-            (cls.is_bids_root_dir(src), 'Dataset')
+            (cls.is_bids_root_dir(src), 'Dataset'),
+            (cls.isderivatives(src), 'Derivatives')
         )
         _cls = next(filter(lambda item: bool(item[0]), _mapper))
         keywords = dict(zip(ENTITY_STRINGS, super().__get_entities__(src)))

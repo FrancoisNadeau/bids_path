@@ -1,5 +1,6 @@
 pandas~=1.4.2
 nibabel~=3.2.2
 numpy~=1.22.4
+pathlib2
 setuptools~=62.3.2
 git+https://github.com/nilearn/nilearn.git

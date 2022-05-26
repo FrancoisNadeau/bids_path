@@ -8,7 +8,7 @@ from bids_validator import BIDSValidator
 from collections import UserString
 from os import PathLike, stat_result
 from os.path import isdir, isfile, samefile
-from pathlib import Path
+from pathlib2 import Path
 from typing import (
     Any, Dict, Generator, Iterable, List,
     Optional, Text, Tuple, Union
@@ -39,7 +39,7 @@ from ..functions.BIDSPathFunctions import (
 __path__ = [os.path.join('..', '__init__.py')]
 
 
-class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
+class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
     """
     Abstract class emulating a ``pathlib.Path`` object.
 
@@ -66,23 +66,50 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         ``__fspath__`` and ``__get_entities__``.
     """
     __slots__ = ()
-    def __type__(self): return type(self)
 
-    __int__, __float__, __complex__ = [NotImplemented]*3
-    __delattr__, __rmod__ = [NotImplemented]*2
-    __reversed__, __getnewargs__, __weakref__ = [NotImplemented]*3
+    def __type__(self):
+        return type(self)
+
+    __int__, __float__, __complex__ = [NotImplemented] * 3
+    __delattr__, __rmod__ = [NotImplemented] * 2
+    __reversed__, __getnewargs__, __weakref__ = [NotImplemented] * 3
     __dict__ = NotImplemented
+
+    @property
+    def _chars(self) -> List:
+        return [c for c in self]
+
+    @property
+    @docstring_parameter(Path.__doc__)
+    def path(self):
+        """
+        Main property of ``BIDSPath`` objects.
+
+        {0}\n"""
+        return Path(self.__str__())
 
     # Mandatory abstract methods
     @docstring_parameter(os.fspath.__doc__)
     def __fspath__(self) -> Text:
         """{0}\n"""
-        return ''.join(self._chars)
+        return super().__str__()
 
     @docstring_parameter(GetEntityStrings.__doc__)
     def __get_entities__(self) -> Tuple:
         """{0}\n"""
         return GetEntityStrings(self)
+
+    def __str__(self, /) -> Text:
+        return super().__str__()
+
+    def __repr__(self, /) -> Text:
+        """
+        Returns repr(self).
+
+        """
+        _name = type(self).__name__
+        os_type = type(self.path).__name__
+        return f"{_name}({os_type}({self.path}))"
 
     @classmethod
     def __subclasshook__(cls, subclass: Any):
@@ -97,6 +124,22 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
 
     def __instancecheck__(self, instance: Any) -> bool:
         return any(map(self.__subclasscheck__, instance.__mro__))
+
+    def __iter__(self):
+        i = 0
+        try:
+            while True:
+                v = self[i]
+                yield v
+                i += 1
+        except IndexError:
+            return
+
+    def __len__(self) -> int:
+        return self.__str__().__len__()
+
+    def __index__(self, value: int) -> int:
+        return self._chars[value]
 
     @classmethod
     @docstring_parameter(SetFromDict.__doc__)
@@ -128,23 +171,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     def bidsignore(self) -> Generator:
         """{0}\n"""
         yield from GetBidsignore(self.path)
-    
-    @property
-    def _chars(self) -> List:
-        return list(self)
-    
-    @property
-    def _default_encoding(self) -> Text:
-        return sys.getdefaultencoding()
-
-    def __repr__(self) -> Text:
-        """
-        Returns repr(self).
-
-        """
-        _name = type(self).__name__
-        os_path_type = type(self.path).__name__
-        return f"{_name}({os_path_type}({self.__str__()}))"
 
     # Dunder methods inherited from ``pathlib.Path``
     def __reduce__(self) -> Tuple:
@@ -205,15 +231,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     def __call__(self, /, *args, **kwargs):
         return object.__call__(*args, **kwargs)
 
-    @property
-    @docstring_parameter(Path.__doc__)
-    def path(self):
-        """
-        Main property of ``BIDSPath`` objects.
-
-        {0}\n"""
-        return Path(self)
-
     # Pathlib and os bids_path_functions as static methods
     @staticmethod
     def isdir(src: Union[Text, PathLike]) -> bool:
@@ -256,7 +273,7 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
         yield from Path(src).parents
 
     @staticmethod
-    def get_drive(src: PathLike) -> Text:
+    def get_drive(src: Union[Text, PathLike]) -> Text:
         """
         Returns the drive prefix (letter or UNC path), if any.
 
@@ -320,11 +337,6 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
     def lchmod(self, mode: int):
         """{0}\n"""
         self.path.lchmod(mode)
-
-    @docstring_parameter(Path.link_to.__doc__)
-    def link_to(self, target: Union[Text, PathLike]):
-        """{0}\n"""
-        self.path.link_to(target)
 
     @docstring_parameter(Path.symlink_to.__doc__)
     def symlink_to(self,
@@ -392,9 +404,9 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
                              errors=errors)
 
     @docstring_parameter(Path.unlink.__doc__)
-    def unlink(self, missing_ok: bool = False):
+    def unlink(self):
         """{0}\n"""
-        self.path.unlink(missing_ok=missing_ok)
+        self.path.unlink()
 
     @docstring_parameter(Path.mkdir.__doc__)
     def mkdir(self, mode: int = 511,
@@ -677,6 +689,17 @@ class BIDSPathAbstract(*(str, BIDSPathLike, ABC)):
 
         """
         return IsDerivativesRoot(src)
+
+    @staticmethod
+    def isderivatives(src: Union[Text, PathLike]) -> bool:
+        """
+        Returns True if ``src`` points to a path in a derived dataset.
+
+        Args:
+            src: string or PathLike
+                The path to verify.
+        """
+        return IsDerivatives(src)
 
     @staticmethod
     @docstring_parameter(IsDatasetRoot.__doc__)

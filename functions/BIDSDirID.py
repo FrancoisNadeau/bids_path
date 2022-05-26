@@ -35,7 +35,7 @@ def IsBIDSRoot(src: Union[Text, PathLike]) -> bool:
         return False
 
 
-def IsDatasetRoot(src: Union[Text, bytes, PathLike]) -> bool:
+def IsDatasetRoot(src: Union[Text, PathLike]) -> bool:
     """
     Returns True if ``src`` points to the BIDS dataset's topmost directory.
 
@@ -53,7 +53,7 @@ def IsSubjectDir(src: Union[Text, PathLike]) -> bool:
     Returns True if ``src`` points to a subject-level directory.
 
     """
-    return Path(src).name.startswith('sub-') if isdir(src) else False
+    return all((Path(src).name.startswith('sub-'), isdir(src)))
 
 
 def IsSessionDir(src: Union[Text, PathLike]) -> bool:
@@ -61,8 +61,7 @@ def IsSessionDir(src: Union[Text, PathLike]) -> bool:
     Returns True if ``src`` points to a session-level directory.
 
     """
-    return basename(src) == find_entity(src, 'ses') \
-        if isdir(src) else False
+    return all((Path(src).name == find_entity(src, 'ses'), isdir(src)))
 
 
 def IsDatatypeDir(src: Union[Text, PathLike]) -> bool:
@@ -70,7 +69,7 @@ def IsDatatypeDir(src: Union[Text, PathLike]) -> bool:
     Returns True if ``src`` points to a datatype-level directory.
 
     """
-    return basename(src) in DATATYPE_STRINGS if isdir(src) else False
+    return all((Path(src).name in DATATYPE_STRINGS, isdir(src)))
 
 
 def IsDerivatives(src: Union[Text, PathLike]) -> bool:

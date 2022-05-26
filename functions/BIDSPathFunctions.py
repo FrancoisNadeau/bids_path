@@ -151,7 +151,7 @@ def DatasetRoot(src: Union[Text, PathLike]) -> Union[Text, PathLike]:
 def DerivativesRoot(src: Union[Text, PathLike]
                     ) -> Union[Text, PathLike]:
     """
-    Returns the root directory of a given software or pipeline.
+    Returns the root directory of a derived dataset.
 
     """
     _d_dir = os.path.join(DatasetRoot(str(src)), 'derivatives')
