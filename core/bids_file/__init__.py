@@ -8,13 +8,15 @@ from typing import List
 
 from ..BIDSFileAbstract import BIDSFileAbstract
 from ..bids_file import (
-    BehFile, BIDSFile, EventsFile, FMRIFile, MRIFile,
-    PhysioFile, SideCarFile
+    BehFile, BIDSFile, ChangesFile, EventsFile, FMRIFile,
+    GitAttributesFile, LicenseFile, MRIFile, PhysioFile,
+    ReadMeFile, SideCarFile
 )
 
 __all__: List = [
-    "BehFile", "BIDSFile", "EventsFile", "FMRIFile",
-    "MRIFile", "PhysioFile", "SideCarFile", "BIDSFileAbstract"
+    "BehFile", "BIDSFile", "ChangesFile", "EventsFile",
+    "GitAttributesFile", "FMRIFile", "LicenseFile", "MRIFile",
+    "PhysioFile", "ReadMeFile", "SideCarFile", "BIDSFileAbstract"
 ]
 
 __path__ = [os.path.join('..', '..', 'core', '__init__.py')]

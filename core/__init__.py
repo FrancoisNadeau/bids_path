@@ -15,16 +15,18 @@ from ..core.bids_dir import (
 )
 from .bids_dir.Derivatives import Derivatives
 from ..core.bids_file import (
-    BIDSFile, BehFile, EventsFile, FMRIFile, MRIFile,
-    PhysioFile, SideCarFile
+    BIDSFile, BehFile, ChangesFile, EventsFile, FMRIFile,
+    GitAttributesFile, LicenseFile, MRIFile,
+    PhysioFile, ReadMeFile, SideCarFile
 )
 
 __all__ = [
     # core
     "BIDSDirAbstract", "BIDSFileAbstract", "BIDSPathAbstract",
     # BIDSFile
-    "BIDSFile", "BehFile", "EventsFile", "FMRIFile", "MRIFile",
-    "PhysioFile", "SideCarFile",
+    "BIDSFile", "BehFile", "ChangesFile", "EventsFile", "FMRIFile",
+    "GitAttributesFile", "LicenseFile", "MRIFile", "PhysioFile",
+    "ReadMeFile", "SideCarFile",
     # BIDSDir
     "BIDSDir", "Datatype", "Session", "Subject", "Derivatives"
 ]

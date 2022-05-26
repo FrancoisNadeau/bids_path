@@ -258,6 +258,23 @@ def PathsByPatterns(src: Union[Text, PathLike],
     yield from iter(set(map(_type, _paths)))
 
 
+def GetGitAttributes(src: Union[Text, PathLike]) -> Generator:
+    """
+    Yields paths matching patterns defined in the '.bidsignore' file.
+
+    """
+    try:
+        assert src
+        _ds_root = DatasetRoot(src)
+        _ignore_path = os.path.join(_ds_root, '.gitattributes')
+        _lines = Path(_ignore_path).read_text().splitlines()
+        yield from PathsByPatterns(_ds_root, _lines)
+    except AssertionError:
+        pass
+    except FileNotFoundError:
+        yield from iter(set())
+
+
 def GetBidsignore(src: Union[Text, PathLike]) -> Generator:
     """
     Yields paths matching patterns defined in the '.bidsignore' file.

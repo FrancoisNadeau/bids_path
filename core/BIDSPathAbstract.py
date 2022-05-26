@@ -76,17 +76,13 @@ class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
     __dict__ = NotImplemented
 
     @property
-    def _chars(self) -> List:
-        return [c for c in self]
-
-    @property
     @docstring_parameter(Path.__doc__)
     def path(self):
         """
         Main property of ``BIDSPath`` objects.
 
         {0}\n"""
-        return Path(self.__str__())
+        return Path(super().__str__())
 
     # Mandatory abstract methods
     @docstring_parameter(os.fspath.__doc__)
@@ -125,21 +121,11 @@ class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
     def __instancecheck__(self, instance: Any) -> bool:
         return any(map(self.__subclasscheck__, instance.__mro__))
 
-    def __iter__(self):
-        i = 0
-        try:
-            while True:
-                v = self[i]
-                yield v
-                i += 1
-        except IndexError:
-            return
+    def __iter__(self) -> Iterable:
+        return super().__iter__()
 
     def __len__(self) -> int:
-        return self.__str__().__len__()
-
-    def __index__(self, value: int) -> int:
-        return self._chars[value]
+        return super().__str__().__len__()
 
     @classmethod
     @docstring_parameter(SetFromDict.__doc__)
@@ -195,7 +181,7 @@ class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
         Notes:
             Only recommended to use under Unix.
         """
-        return b''.join(map(lambda c: c.encode(sys.getdefaultencoding()), self))
+        return super().__str__().encode(sys.getdefaultencoding())
 
     def __hash__(self) -> int:
         return self.path.__hash__()

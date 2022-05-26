@@ -29,10 +29,13 @@ class BIDSFile(BIDSFileAbstract):
     Subclasses:
         ``BIDSFile``
         ``BehFile``
+        ``ChangesFile``
         ``EventsFile``
         ``FMRIFile``
+        ``LicenseFile``
         ``MRIFile``
         ``PhysioFile``
+        ``ReadMeFile``
         ``SideCarFile``
 
     """

@@ -5,6 +5,7 @@ from io import BufferedIOBase, BytesIO
 from nibabel.nifti1 import Nifti1Image
 from os import PathLike
 from os.path import isfile
+from pathlib import Path
 from typing import Dict, Text, Union
 
 from ..general_methods import docstring_parameter
@@ -48,20 +49,27 @@ class BIDSFileAbstract(BIDSPathAbstract):
         subclass_dict = BIDSFileAbstract.subclass_dict()
         if not isfile(str(src)):
             return src
-        _mapper = (
-            (super().is_3d_file(src), 'MRIFile'),
-            (super().is_4d_file(src), 'FMRIFile'),
-            (super().is_event_file(src), 'EventsFile'),
-            (super().is_beh_file(src), 'BehFile'),
-            (super().is_physio_file(src), 'PhysioFile'),
-            (super().is_sidecar_file(src), 'SideCarFile')
-        )
-        _cls = next(filter(lambda item: bool(item[0]), _mapper))
-        keywords = dict(zip(ENTITY_STRINGS,
-                            super().__get_entities__(src)))
-        subclass = subclass_dict[_cls[1]](src)
-        subclass.__set_from_dict__(keywords)
-        return subclass
+        try:
+            _mapper = (
+                (super().is_3d_file(src), 'MRIFile'),
+                (super().is_4d_file(src), 'FMRIFile'),
+                (super().is_event_file(src), 'EventsFile'),
+                (super().is_beh_file(src), 'BehFile'),
+                (super().is_physio_file(src), 'PhysioFile'),
+                (super().is_sidecar_file(src), 'SideCarFile'),
+                (Path(src).name == 'CHANGES', 'ChangesFile'),
+                (Path(src).name == 'README', 'ReadMeFile'),
+                (Path(src).name == 'LICENSE', 'LicenseFile'),
+                (Path(src).name == '.gitattributes', 'GitAttributesFile')
+            )
+            _cls = next(filter(lambda item: bool(item[0]), _mapper))
+            keywords = dict(zip(ENTITY_STRINGS,
+                                super().__get_entities__(src)))
+            subclass = subclass_dict[_cls[1]](src)
+            subclass.__set_from_dict__(keywords)
+            return subclass
+        except StopIteration:
+            print(src)
 
     @property
     def buf(self) -> BufferedIOBase:
