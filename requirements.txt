@@ -1,6 +1,8 @@
-pandas~=1.4.2
-nibabel~=3.2.2
-numpy~=1.22.4
-pathlib2
-setuptools~=62.3.2
+# more-itertools~=8.13.0
+# nibabel~=3.2.2
+# numpy~=1.22.4
+# pandas~=1.4.2
+# git+https://github.com/more-itertools/more-itertools.git
 git+https://github.com/nilearn/nilearn.git
+git+https://github.com/jazzband/pathlib2.git
+git+https://github.com/bids-standard/bids-validator.git

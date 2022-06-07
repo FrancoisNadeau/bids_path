@@ -5,8 +5,7 @@ Class for 3D MRI image files.
 
 import os
 from nibabel import Nifti1Image
-from numpy.typing import ArrayLike
-from typing import Text, Optional, Any, Union, Dict
+from typing import Text, Iterable, Optional, Any, Union, Dict
 
 from ...general_methods import docstring_parameter
 from ...core.BIDSFileAbstract import BIDSFileAbstract
@@ -61,7 +60,7 @@ class MRIFile(BIDSFileAbstract):
 
     @staticmethod
     @docstring_parameter(GetFrameTimes.__doc__)
-    def get_frame_times(img: Nifti1Image) -> ArrayLike:
+    def get_frame_times(img: Nifti1Image) -> Iterable:
         """{0}\n"""
         return GetFrameTimes(img)
 
@@ -91,7 +90,7 @@ class MRIFile(BIDSFileAbstract):
 
     @property
     @docstring_parameter(GetFrameTimes.__doc__)
-    def frame_times(self) -> ArrayLike:
+    def frame_times(self) -> Iterable:
         """{0}\n"""
         return GetFrameTimes(self.img)
 

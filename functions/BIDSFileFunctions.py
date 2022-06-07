@@ -9,15 +9,11 @@ class methods of the ``BIDSPathBase.BIDSPathBase`` object.
 import hashlib
 import json
 from gzip import decompress
-from io import BytesIO
 from nibabel.nifti1 import Nifti1Image
 from nilearn.image import load_img
-from numpy import arange
-from numpy.typing import ArrayLike
 from os import PathLike
 from os.path import dirname
 from pandas import read_csv, Series
-from pathlib import Path
 from typing import (
     Dict, Iterable, List, Optional, Text, Tuple, Union
 )
@@ -62,7 +58,10 @@ def GetSidecar(src: Union[Text, PathLike],
                      MatchComponents(_dst, src=src, exclude=exclude,
                                      recursive=True, **keywords))
     try:
-        return json.loads(Path(next(sc_path)).read_text())
+        with open(next(sc_path), mode='r') as jfile:
+            sidecar = json.load(jfile)
+            jfile.close()
+            return sidecar
     except (StopIteration, FileNotFoundError, TypeError):
         return ''
 
@@ -114,12 +113,10 @@ def GetEvents(src: Union[Text, PathLike], **kwargs
     """
     kwargs = kwargs if kwargs else {}
     _task = find_entity(src, 'task', keep_key=False)
-    keywords = dict(bids_suffix='events', extension='.tsv',
-                    task=_task)
+    keywords = dict(bids_suffix='events', extension='.tsv', task=_task)
     keywords = {**keywords, **kwargs}
 
     try:
-
         assert all((bool(_task), _task not in {'task-rest', 'rest'}))
         events_path = MatchComponents(dirname(src), src=src, **keywords)
         events_path = next(filter(IsEvent, events_path))
@@ -242,10 +239,11 @@ def GetMD5CheckSum(src: Union[Text, PathLike],
     Returns: Text
         String of double length, containing only hexadecimal digits.
     """
-    m, _src = hashlib.md5(), Path(src).read_bytes
-    _stream = BytesIO(decompress(_src())) \
-        if unzip else BytesIO(_src())
-    [m.update(line) for line in _stream.readlines()]
+    m = hashlib.md5()
+    with open(src, mode='rb') as file:
+        [m.update(line) if not unzip else decompress(line)
+         for line in file.readlines()]
+        file.close()
     return m.hexdigest()
 
 
@@ -265,10 +263,11 @@ def GetSha1Sum(src: Union[Text, PathLike],
     Returns: str
         Hexadecimal string
     """
-    m, _src = hashlib.sha1(), Path(src)
-    _buf = BytesIO(_src.read_bytes()) if not unzip else \
-        BytesIO(decompress(_src.read_bytes()))
-    [m.update(line) for line in _buf.readlines()]
+    m = hashlib.sha1()
+    with open(src, mode='rb') as file:
+        [m.update(line) if not unzip else decompress(line)
+         for line in file.readlines()]
+        file.close()
     return m.hexdigest()
 
 
@@ -310,13 +309,17 @@ def GetTR(img: Nifti1Image) -> float:
         return 0.0
 
 
-def GetFrameTimes(img: Nifti1Image) -> ArrayLike:
+def GetFrameTimes(img: Nifti1Image) -> Iterable:
     """
     Returns scan frame onset times from the repetition time of ``img``.
 
     """
     try:
-        return arange(img.shape[-1]) * GetTR(img)
+        _shape, tr, result, start = img.shape[-1], GetTR(img), [], 0
+        for frame in range(_shape):
+            start += tr
+            result.append(start)
+        return result
     except NIFTI_ERRORS:
         return []
 

@@ -28,7 +28,6 @@ from .BIDSDirID import (
     IsBIDSRoot, IsDatasetRoot, IsSubjectDir, IsSessionDir
 )
 from bids_validator import BIDSValidator
-from more_itertools import flatten
 
 from ..constants.BIDSPathConstants import (
     BVE_MESSAGE, DD_FILE, TIME_FORMAT,
@@ -38,6 +37,7 @@ from ..constants.Modality import Modalities, Modality
 from .BIDSPathCoreFunctions import (
     find_datatype, ComponentsGen, EntityGen, EntityStringGen
 )
+from ..general_methods import flatten
 
 
 def root_path() -> Text:

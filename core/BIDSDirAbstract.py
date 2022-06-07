@@ -1,7 +1,6 @@
 
 import os
 from collections.abc import Collection
-from more_itertools import flatten
 from os import PathLike
 from os.path import isdir
 from typing import Any, Iterator, Text, Union
@@ -9,6 +8,7 @@ from typing import Any, Iterator, Text, Union
 from ..core.BIDSPathAbstract import BIDSPathAbstract
 from ..core.bids_file.BIDSFile import BIDSFile
 from ..constants.BIDSPathConstants import ENTITY_STRINGS
+from ..general_methods import flatten
 
 _bases = (BIDSPathAbstract, Collection)
 

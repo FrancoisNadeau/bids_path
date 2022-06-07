@@ -1,14 +1,15 @@
 
 from setuptools import setup
-SETUP_REQUIRES = [
-    'pandas ~= 1.4.2', 'nibabel ~= 3.2.2', 'numpy ~= 1.22.4',
-]
+# SETUP_REQUIRES = [
+#     'more-itertools ~= 8.13.0', 'nibabel ~= 3.2.2',
+#     'numpy ~= 1.22.4', 'pandas ~= 1.4.2',
+# ]
 AUTHOR = 'Francois Nadeau'
 EMAIL = 'francois.nadeau1@gmail.com'
 
 setup(
     name='bidspathlib',
-    version='0.0.8.6',
+    version='0.0.9.1',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'
@@ -34,7 +35,7 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     python_requires='>=3.8',
-    setup_requires=SETUP_REQUIRES,
+    # setup_requires=SETUP_REQUIRES,
     install_requires=[
         'nilearn @ git+https://github.com/nilearn/nilearn.git#egg=nilearn'
     ]

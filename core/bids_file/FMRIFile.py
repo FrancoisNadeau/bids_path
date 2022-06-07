@@ -7,7 +7,7 @@ import os
 from nibabel.nifti1 import Nifti1Image
 from numpy.typing import ArrayLike
 from os import PathLike
-from typing import Dict, Union, Text, Tuple
+from typing import Dict, Iterable, Union, Text, Tuple
 
 from ...general_methods import docstring_parameter
 from ...functions.BIDSFileFunctions import GetEvents

@@ -91,6 +91,32 @@ def Snake2Camel(name: Text) -> Text:
     return capwords(name.replace("_", " ")).replace(" ", "")
 
 
+def flatten(nested: Iterable) -> list:
+    """
+    Return vectorized (1D) list from nested Sequence ``nested``.
+
+    Args:
+        nested: Sequence
+           Iterable sequence containing multiple other nested sequences.
+
+    Returns: list
+        Vectorized (unidimensional) version of ``nested``.
+
+    References: https://stackoverflow.com/questions/2158395/flatten-an-irregular-list-of-lists
+    """
+
+    yield from (flatten(x)
+                if all((isinstance(x, Iterable),
+                        not isinstance(x, (str, bytes))))
+                else x
+                for x in nested)
+    # return [lowest for sublist in nested for lowest
+    #         in (flatten(sublist)
+    #             if bool(isinstance(sublist, Sequence)
+    #                     and not isinstance(sublist, str))
+    #             else [sublist])]
+
+
 def SetFromDict(obj: Any,
                 attrs: Dict,
                 keys: Optional[Iterable] = None,
@@ -170,13 +196,12 @@ def rev_dict(dc: Dict) -> Dict:
 
 
 __methods__: Tuple = (
-    docstring_parameter, get_default_args, camel_to_snake,
-    Snake2Camel, SetFromDict, SubclassesRecursive,
-    rev_dict
+    docstring_parameter, flatten, get_default_args, camel_to_snake,
+    Snake2Camel, SetFromDict, SubclassesRecursive, rev_dict
 )
 
 __all__: List = [
-    "docstring_parameter", "get_default_args", "camel_to_snake",
-    "Snake2Camel", "SetFromDict", "SubclassesRecursive",
-    "rev_dict", "__methods__"
+    "docstring_parameter", "flatten", "get_default_args",
+    "camel_to_snake", "Snake2Camel", "SetFromDict",
+    "SubclassesRecursive", "rev_dict", "__methods__"
 ]
