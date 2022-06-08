@@ -1,5 +1,6 @@
 setuptools~=58.1.0
 wheel~=0.37.1
-bids-validator~=1.9.
+#bids-validator~=1.9.4
+git+https://github.com/bids-standard/bids-validator.git
 git+https://github.com/nilearn/nilearn.git
 git+https://github.com/jazzband/pathlib2.git
