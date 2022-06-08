@@ -1,10 +1,6 @@
 
 from setuptools import setup
-# SETUP_REQUIRES = [
-#     'more-itertools ~= 8.13.0', 'nibabel ~= 3.2.2',
-#     'numpy ~= 1.22.4', 'pandas ~= 1.4.2',
-# ]
-SETUP_REQUIRES = ['pathlib2 ~= 2.3.7.post1', 'bids-validator ~= 1.9.4']
+
 AUTHOR = 'Francois Nadeau'
 EMAIL = 'francois.nadeau1@gmail.com'
 
@@ -36,8 +32,9 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     python_requires='>=3.8',
-    setup_requires=SETUP_REQUIRES,
     install_requires=[
+        'bids-validator ~= 1.9.4',
+        'pathlib2 ~= 2.3.7.post1',
         'nilearn @ git+https://github.com/nilearn/nilearn.git#egg=nilearn'
     ]
 )
