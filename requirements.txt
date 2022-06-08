@@ -2,6 +2,8 @@
 # nibabel~=3.2.2
 # numpy~=1.22.4
 # pandas~=1.4.2
+setuptools~=58.1.0
+wheel~=0.37.1
 # git+https://github.com/more-itertools/more-itertools.git
 git+https://github.com/nilearn/nilearn.git
 git+https://github.com/jazzband/pathlib2.git
