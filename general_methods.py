@@ -35,6 +35,20 @@ def docstring_parameter(*sub: Union[Text, Iterable]):
     return dec
 
 
+def is_hidden(src: Union[Text, os.PathLike]) -> bool:
+    """
+    Returns True if the name of path ``src`` starts by a dot.
+
+    Args:
+        src: Text or os.PathLike
+            The path to evaluate.
+
+    Returns: bool
+    """
+
+    return os.path.basename(src).startswith('.')
+
+
 def get_default_args(func: callable) -> Dict:
     """
     Return a dict containing the default arguments of ``func``.
@@ -196,12 +210,14 @@ def rev_dict(dc: Dict) -> Dict:
 
 
 __methods__: Tuple = (
-    docstring_parameter, flatten, get_default_args, camel_to_snake,
-    Snake2Camel, SetFromDict, SubclassesRecursive, rev_dict
+    docstring_parameter, is_hidden, flatten, get_default_args,
+    camel_to_snake, Snake2Camel, SetFromDict,
+    SubclassesRecursive, rev_dict
 )
 
 __all__: List = [
-    "docstring_parameter", "flatten", "get_default_args",
-    "camel_to_snake", "Snake2Camel", "SetFromDict",
-    "SubclassesRecursive", "rev_dict", "__methods__"
+    "docstring_parameter", "is_hidden", "flatten",
+    "get_default_args", "camel_to_snake", "Snake2Camel",
+    "SetFromDict", "SubclassesRecursive", "rev_dict",
+    "__methods__"
 ]

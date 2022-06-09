@@ -8,7 +8,7 @@ from typing import Any, Iterator, Text, Union
 from ..core.BIDSPathAbstract import BIDSPathAbstract
 from ..core.bids_file.BIDSFile import BIDSFile
 from ..constants.BIDSPathConstants import ENTITY_STRINGS
-from ..general_methods import flatten
+from ..general_methods import flatten, is_hidden
 
 _bases = (BIDSPathAbstract, Collection)
 
@@ -68,21 +68,22 @@ class BIDSDirAbstract(*_bases):
         """
         Yields all existing paths matching a relative pattern in this subtree.
 
+        Does not yield any result for the special paths
+        '.' and '..'. and those defined in the '.bidsignore' file.
+
         Args:
             pattern: str
                 Pattern relative to ``self.path``.
 
-        Files defined in the '.bidsignore' file are omitted.
-
         Returns: Iterator
 
         """
-        _cls = self.__bases__[0].__subclasses__()[1]
+        _cls = self.__bases__[0].__subclasses__()[1]  # BIDSDirAbstract
         # Remove files defined in the ".bidsignore" file
         _paths = set(self.path.glob(pattern)).difference(set(self.bidsignore))
         # Remove hidden files
-        _paths = set(filter(lambda p: not os.path.basename(p).startswith('.'), _paths))
-        yield from map(_cls.__prepare__, map(BIDSFile, _paths))
+        _paths = set(filter(lambda p: not is_hidden(p), _paths))
+        yield from map(_cls.__prepare__, set(map(BIDSFile, _paths)))
 
     def iterdir(self) -> Iterator:
         """
@@ -97,23 +98,25 @@ class BIDSDirAbstract(*_bases):
         # Remove files defined in the ".bidsignore" file
         _paths = set(self.path.iterdir()).difference(set(self.bidsignore))
         # Remove hidden files
-        _paths = set(filter(lambda p: not os.path.basename(p).startswith('.'), _paths))
-        yield from map(_cls.__prepare__, map(BIDSFile, _paths))
+        _paths = set(filter(lambda p: not is_hidden(p), _paths))
+        yield from map(_cls.__prepare__, set(map(BIDSFile, _paths)))
 
     def rglob(self, pattern: Text) -> Iterator:
         """
         Recursively yields all paths matching ``pattern`` in this subtree.
 
-        Paths defined in the '.bidsignore' file are omitted.
+        Does not yield any result for the special paths
+        '.' and '..'. and those defined in the '.bidsignore' file.
+
         Args:
             pattern: str
                 Pattern relative to ``self.path``.
 
         Returns: Iterator
         """
-        _cls = self.__bases__[0].__subclasses__()[1]
+        _cls = self.__bases__[0].__subclasses__()[1]  # BIDSDirAbstract
         # Remove files defined in the ".bidsignore" file
         _paths = set(self.path.rglob(pattern)).difference(set(self.bidsignore))
         # Remove hidden files
-        _paths = set(filter(lambda p: not os.path.basename(p).startswith('.'), _paths))
-        yield from map(_cls.__prepare__, map(BIDSFile, _paths))
+        _paths = set(filter(lambda p: not is_hidden(p), _paths))
+        yield from map(_cls.__prepare__, set(map(BIDSFile, _paths)))
