@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c011de19-c83d-4ebc-a99d-e3cfc3a20d40" name="Changes" comment="&quot;Fixed json_docs path 2.&quot;">
+      <change afterPath="$PROJECT_DIR$/constants/bidspathlib_docs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/EGG-INFO/LICENSE.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/EGG-INFO/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/EGG-INFO/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/EGG-INFO/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/EGG-INFO/requires.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/EGG-INFO/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eggs/pathlib2-2.3.7.post1-py3.10.egg/pathlib2/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bidspathlib.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidspathlib.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidspathlib.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidspathlib.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidspathlib.egg-info/requires.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bidspathlib.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/constants/BIDSPathConstants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/constants/Modality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/constants/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/constants/bidspathlib_exceptions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/constants/fMRIPrepEntities.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/BIDSDirAbstract.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/BIDSFileAbstract.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/BIDSPathAbstract.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/BIDSDir.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/Dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/Datatype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/Derivatives.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/Session.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/Subject.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_dir/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/BIDSFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/BehFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/ChangesFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/EventsFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/FMRIFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/GitAttributesFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/LicenseFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/MRIFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/PhysioFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/ReadMeFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/SideCarFile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/bids_file/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/tests/ErrorCheck.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/tests/TimeCheck.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/core/tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/functions/BIDSDirID.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/functions/BIDSFileFunctions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/functions/BIDSFileID.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/functions/BIDSPathCoreFunctions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/functions/BIDSPathFunctions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/functions/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/BIDSPathConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants/BIDSPathConstants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/bids_dir/Session.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/bids_dir/Session.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/BIDSPathFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/BIDSPathFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/general_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_methods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/BIDS_datatypes.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/BIDS_datatypes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/BIDS_datatypes_modalities.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/BIDS_datatypes_modalities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/BIDS_deprecated_suffixes.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/BIDS_deprecated_suffixes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/BIDS_entities_descriptions.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/BIDS_entities_descriptions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/BIDS_non_entity_components_descriptions.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/BIDS_non_entity_components_descriptions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/FMRIPrep_output_strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/FMRIPrep_output_strings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/base_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/base_data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_docs/load_confounds_strategy_parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/json_docs/load_confounds_strategy_parameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AJZfYGfXlrMn2KiZcw6JLgjfFW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/constants" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c011de19-c83d-4ebc-a99d-e3cfc3a20d40" name="Changes" comment="" />
+      <created>1654729752674</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654729752674</updated>
+    </task>
+    <task id="LOCAL-00001" summary="&quot;Fixed json_docs path.&quot;">
+      <created>1654733151209</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1654733151209</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;Fixed json_docs path 2.&quot;">
+      <created>1654733305530</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654733305530</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;Fixed json_docs path.&quot;" />
+    <MESSAGE value="&quot;Fixed json_docs path 2.&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Fixed json_docs path 2.&quot;" />
+  </component>
+</project>
