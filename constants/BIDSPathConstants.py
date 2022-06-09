@@ -50,7 +50,7 @@ def absolute_relative_to(src: Union[Text, os.PathLike],
 DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH,\
 N_DESC_PATH, FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
     sorted(map(absolute_relative_to,
-               iglob(join(dirname(__path__), 'json_docs', '**'))))
+               iglob(join(dirname(__path__[0]), 'json_docs', '**'))))
 
 base_data_strings: Dict = json.loads(BASE_DATA_PATH.read_text())
 
