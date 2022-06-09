@@ -37,32 +37,7 @@ from ..constants.Modality import Modalities, Modality
 from .BIDSPathCoreFunctions import (
     find_datatype, ComponentsGen, EntityGen, EntityStringGen
 )
-from ..general_methods import flatten
-
-
-def root_path() -> Text:
-    """
-    Returns platform-independant root/drive directory.
-
-    From the author:
-    "On Linux this returns '/'.
-    On Windows this returns 'C:\\' or whatever the current drive."
-
-    References:
-        <https://stackoverflow.com/questions/12041525/a-system-independent-way-using-python-to-get-the-root-directory-drive-on-which-p>
-    """
-    try:
-        return os.path.abspath(os.path.sep)
-    except RecursionError:
-        return str(Path.cwd().root)
-
-
-def _add_root(src: Union[Text, PathLike]) -> Union[Text, PathLike]:
-    """
-    Appends root directory or drive letter before path ``src``.
-
-    """
-    return os.path.join(root_path(), str(src))
+from ..general_methods import flatten, root_path, _add_root
 
 
 def RelativeToRoot(src: Union[Text, PathLike]) -> Union[Text, PathLike]:
@@ -322,7 +297,7 @@ __methods__: Tuple = (
     GetBidsignore, GetDerivativesNames
 )
 __all__: List = (
-    "root_path", "_add_root", "RelativeToRoot",
+    "RelativeToRoot",
     "Validate", "SubDir", "SesDir", "BIDSRoot", "DatasetRoot",
     "DerivativesRoot", "DatasetName", "DatasetDescription",
     "DatatypeModality", "FormattedCtime", "GetComponents",

@@ -1,4 +1,5 @@
 
+import sys
 from .functions import (
     core_functions, file_functions, bids_path_functions
 )
@@ -17,6 +18,7 @@ from .BIDSPathLike import BIDSPathLike
 from .MatchComponents import MatchComponents
 from .general_methods import *
 
+print(sys.path[0])
 
 __all__ = [
     "bids_dir", "bids_file", "core_functions", "file_functions",

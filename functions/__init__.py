@@ -27,7 +27,7 @@ __all__ = [
     "find_datatype", "find_entity", "find_extension", "find_bids_suffix",
     "EntityGen", "EntityStringGen", "ComponentsGen", "ExtensionGen", "SuffixGen",
     # BIDSPathFunctions
-    "root_path", "_add_root", "RelativeToRoot",
+    "RelativeToRoot",
     "Validate", "SubDir", "SesDir", "BIDSRoot", "DatasetRoot",
     "DerivativesRoot", "DatasetName", "DatasetDescription",
     "DatatypeModality", "FormattedCtime", "GetComponents",

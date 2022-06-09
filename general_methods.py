@@ -7,6 +7,8 @@ General purpose methods that can work independently of ``bidspathlib``.
 import inspect
 import os
 import re
+from os import PathLike
+from pathlib import Path
 from typing import (
     Any, Dict, Iterable, List, NoReturn,
     Optional, Text, Tuple, Union
@@ -209,9 +211,35 @@ def rev_dict(dc: Dict) -> Dict:
     return dict(tuple((i[1], i[0]) for i in tuple(dc.items())))
 
 
+def root_path() -> Text:
+    """
+    Returns platform-independant root/drive directory.
+
+    From the author:
+    "On Linux this returns '/'.
+    On Windows this returns 'C:\\' or whatever the current drive."
+
+    References:
+        <https://stackoverflow.com/questions/12041525/a-system-independent-way-using-python-to-get-the-root-directory-drive-on-which-p>
+    """
+    try:
+        return os.path.abspath(os.path.sep)
+    except RecursionError:
+        return str(Path.cwd().root)
+
+
+def _add_root(src: Union[Text, PathLike]) -> Union[Text, PathLike]:
+    """
+    Appends root directory or drive letter before path ``src``.
+
+    """
+    return os.path.join(root_path(), str(src))
+
+
 __methods__: Tuple = (
     docstring_parameter, is_hidden, flatten, get_default_args,
     camel_to_snake, Snake2Camel, SetFromDict,
+    _add_root, root_path,
     SubclassesRecursive, rev_dict
 )
 
@@ -219,5 +247,6 @@ __all__: List = [
     "docstring_parameter", "is_hidden", "flatten",
     "get_default_args", "camel_to_snake", "Snake2Camel",
     "SetFromDict", "SubclassesRecursive", "rev_dict",
+    '_add_root', 'root_path',
     "__methods__"
 ]

@@ -10,7 +10,7 @@ from typing import Tuple, Union
 
 from ...constants.BIDSPathConstants import (
     Datatypes, DATATYPES_DESCRIPTION,
-    SES_DESCRIPTION, DATATYPE_STRINGS,
+    DATATYPE_STRINGS, ENTITY_DESC
 )
 from ...core.BIDSDirAbstract import BIDSDirAbstract
 
@@ -20,7 +20,7 @@ from ...general_methods import docstring_parameter
 __path__ = [os.path.join('..', '__init__.py')]
 
 
-@docstring_parameter(SES_DESCRIPTION)
+@docstring_parameter(ENTITY_DESC['session'])
 class Session(BIDSDirAbstract):
     """
     Files associated with measurements from a single participant's visit.

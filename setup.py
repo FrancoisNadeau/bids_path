@@ -6,7 +6,7 @@ EMAIL = 'francois.nadeau1@gmail.com'
 
 setup(
     name='bidspathlib',
-    version='0.0.9.2',
+    version='0.0.9.6.6',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'
@@ -35,6 +35,7 @@ setup(
     install_requires=[
         'bids-validator ~= 1.9.4',
         'pathlib2 ~= 2.3.7.post1',
+        'pyyaml ~= 6.0',
         'nilearn @ git+https://github.com/nilearn/nilearn.git#egg=nilearn'
     ]
 )

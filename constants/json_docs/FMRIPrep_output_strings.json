@@ -1,10 +1,10 @@
 {
-    "fp_img_file_patterns": {
-        "aroma": "_desc-smoothAROMAnonaggr_bold",
-        "nii.gz": "_space-.*_desc-preproc_bold.nii.gz",
-        "dtseries.nii": "_space-.*_bold.dtseries.nii",
-        "func.gii": "_space-.*_hemi-[LR]_bold.func.gii"
-    },
+    "fp_img_file_patterns": [
+        "_desc-smoothAROMAnonaggr_bold",
+        "_space-.*_desc-preproc_bold.nii.gz",
+        "_space-.*_bold.dtseries.nii",
+        "_space-.*_hemi-[LR]_bold.func.gii"
+    ],
     "fp_func_transforms": [
         "_from-scanner_to-T1w_mode-image_xfm.txt",
         "_from-T1w_to-scanner_mode-image_xfm.txt"
