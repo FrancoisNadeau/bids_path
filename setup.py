@@ -1,8 +1,14 @@
 
+import os
+import sys
+from glob import iglob
 from setuptools import setup
 
 AUTHOR = 'Francois Nadeau'
 EMAIL = 'francois.nadeau1@gmail.com'
+
+DOCS_PATH_PARTS = (sys.prefix, '**', 'bidspathlib', 'json_docs')
+DOCS_PATH = next(iglob(os.path.join(*DOCS_PATH_PARTS)))
 
 setup(
     name='bidspathlib',
@@ -37,5 +43,6 @@ setup(
         'pathlib2 ~= 2.3.7.post1',
         'pyyaml ~= 6.0',
         'nilearn @ git+https://github.com/nilearn/nilearn.git#egg=nilearn'
-    ]
+    ],
+    data_files=[('json_docs', os.listdir(DOCS_PATH))]
 )
