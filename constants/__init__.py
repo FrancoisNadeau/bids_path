@@ -27,6 +27,41 @@ BIDS_DOCS: Dict = {
     'BIDS_entity_strings_description': ENTITY_STRINGS_DESC,
     'BIDS_components_description': COMPONENTS_DESC
 }
+LCS_PARAMS: Dict = \
+    LCS_PARAMS: Dict = \
+    {
+    "simple": {
+        "high_pass": true,
+        "motion": "full",
+        "wm_csf": "basic",
+        "global_signal": "None",
+        "demean": true
+      },
+    "scrubbing": {
+        "high_pass": true,
+        "motion": "full",
+        "wm_csf": "full",
+        "global_signal": "None",
+        "scrub": 5.0,
+        "fd_threshold": 0.2,
+        "std_dvars_threshold": 3.0,
+        "demean": true
+      },
+    "compcor": {
+        "high_pass": true,
+        "motion": "full",
+        "compcor": "anat_combined",
+        "n_compcor": "all",
+        "demean": true
+      },
+    "ica_aroma": {
+        "high_pass": true,
+        "wm_csf": "basic",
+        "global_signal": "None",
+        "ica_aroma": "full",
+        "demean": true
+      }
+}
 
 LC_DOCS: Dict = {
 'load_confounds_strategy_parameters': LCS_PARAMS
