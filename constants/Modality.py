@@ -4,7 +4,7 @@ from collections import namedtuple
 from pprint import pprint
 from typing import Dict, List, Text, Tuple
 
-BIDS_DATATYPE_MODALITIES: Dict = \
+MODALITIES: Dict = \
     {
   "mri": {
     "long_name": "Magnetic Resonance Imaging",
