@@ -2,9 +2,72 @@
 import os
 from collections import namedtuple
 from pprint import pprint
-from typing import List, Text, Tuple
+from typing import Dict, List, Text, Tuple
 
-from .BIDSPathConstants import MODALITIES
+BIDS_DATATYPE_MODALITIES: Dict = \
+    {
+  "mri": {
+    "long_name": "Magnetic Resonance Imaging",
+    "datatypes": [
+      "anat",
+      "dwi",
+      "fmap",
+      "func",
+      "perf"
+    ],
+    "name": "mri",
+    "long_description": "Data acquired with an MRI scanner."
+  },
+  "eeg": {
+    "long_name": "Electroencephalography",
+    "datatypes": [
+      "eeg"
+    ],
+    "name": "eeg",
+    "long_description": "Data acquired with EEG."
+  },
+  "ieeg": {
+    "long_name": "Intracranial Electroencephalography",
+    "datatypes": [
+      "ieeg"
+    ],
+    "name": "ieeg",
+    "long_description": "Data acquired with iEEG."
+  },
+  "meg": {
+    "long_name": "Magnetoencephalography",
+    "datatypes": [
+      "meg"
+    ],
+    "name": "meg",
+    "long_description": "Data acquired with an MEG scanner."
+  },
+  "beh": {
+    "long_name": "Behavioral experiments",
+    "datatypes": [
+      "beh"
+    ],
+    "name": "beh",
+    "long_description": "Behavioral data acquired without accompanying neuroimaging data."
+  },
+  "pet": {
+    "long_name": "Positron Emission Tomography",
+    "datatypes": [
+      "pet"
+    ],
+    "name": "pet",
+    "long_description": "Data acquired with PET."
+  },
+  "micr": {
+    "long_name": "Microscopy",
+    "datatypes": [
+      "micr"
+    ],
+    "name": "micr",
+    "long_description": "Data acquired with a microscope."
+  }
+}
+
 
 MODALITY_FIELDS: Tuple = (
     'long_name', 'datatypes', 'name', 'long_description'
