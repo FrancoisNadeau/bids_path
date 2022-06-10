@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Text, Tuple, Union
 
-__path__: List = [join(sys.path[0], '__init__.py')]
+__path__: List = [os.path.join(sys.path[0], '__init__.py')]
 URL: Text = 'https://github.com/FrancoisNadeau/bidspathlib/tree/main/json_docs'
 DOCS_PATH = Path(os.path.join(__path__[0], 'json_docs'))
 
