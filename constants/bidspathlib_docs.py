@@ -14,17 +14,46 @@ __path__ = [os.path.join('', '__init__.py')]
 DOCS_PATH = os.path.join("**", "bidspathlib", "json_docs", "**")
 
 DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
-FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
+FP_STRINGS_PATH, LCS_PARAMS_PATH = \
     sorted(iglob(DOCS_PATH))
 #     sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
 #                iglob(os.path.join('**', 'json_docs', '**'))))
 
-base_data_strings: Dict = json.loads(BASE_DATA_PATH.read_text())
-
-ENTITY_FIELDS, DATATYPE_STRINGS, ENTITIES_ORDER, ENTITY_STRINGS, \
-NIFTI_EXTENSIONS, SUFFIX_STRINGS, SPECIFIC_DATATYPE_FIELDS,\
-BIDS_RECOMMENDED, NO_EXTENSION_FILES, NON_ENTITY_COMPONENTS = \
-    tuple(base_data_strings.values())
+ENTITY_FIELDS = ('format', 'enum', 'entity', 'name', 'description', 'type')
+DATATYPE_STRINGS = (
+    'anat', 'beh', 'dwi', 'eeg', 'fmap', 'func', 'ieeg',
+    'meg', 'micr', 'perf', 'pet'
+)
+ENTITIES_ORDER = (
+    'subject', 'session', 'sample', 'task', 'acquisition', 'ceagent',
+    'tracer', 'stain', 'reconstruction', 'direction', 'run', 'modality',
+    'echo', 'flip', 'inversion', 'mtransfer', 'part', 'processing',
+    'hemisphere', 'space', 'split', 'recording', 'chunk', 'atlas',
+    'resolution', 'density', 'label', 'description'
+)
+ENTITY_STRINGS = (
+    'sub', 'ses', 'sample', 'task', 'acq', 'ce', 'trc', 'stain', 'rec', 'dir',
+    'run', 'mod', 'echo', 'flip', 'inv', 'mt', 'part', 'proc', 'hemi', 'space',
+    'split', 'recording', 'chunk', 'atlas', 'res', 'den', 'label', 'desc'
+)
+NIFTI_EXTENSIONS = ('.dtseries.nii', '.func.gii', '.gii', '.gii.gz', '.nii', '.nii.gz')
+SUFFIX_STRINGS = (
+    '2PE', 'BF', 'Chimap', 'CARS', 'CONF', 'DIC', 'DF', 'FLAIR', 'FLASH', 'FLUO',
+    'IRT1', 'M0map', 'MEGRE', 'MESE', 'MP2RAGE', 'MPE', 'MPM', 'MTR', 'MTRmap',
+    'MTS', 'MTVmap', 'MTsat', 'MWFmap', 'NLO', 'OCT', 'PC', 'PD', 'PDT2',
+    'PDT2map', 'PDmap', 'PDw', 'PLI', 'R1map', 'R2map', 'R2starmap', 'RB1COR',
+    'RB1map', 'S0map', 'SEM', 'SPIM', 'SR', 'T1map', 'T1rho', 'T1w',
+    'T2map', 'T2star', 'T2starmap', 'T2starw', 'T2w', 'TB1AFI', 'TB1DAM', 'TB1EPI',
+    'TB1RFM', 'TB1SRGE', 'TB1TFL', 'TB1map', 'TEM', 'UNIT1', 'VFA', 'angio', 'asl',
+    'aslcontext', 'asllabeling', 'beh', 'blood', 'bold', 'cbv', 'channels',
+    'coordsystem', 'defacemask', 'dwi', 'eeg', 'electrodes', 'epi', 'events',
+    'fieldmap', 'headshape', 'ieeg', 'inplaneT1', 'inplaneT2', 'm0scan', 'magnitude',
+    'magnitude1', 'magnitude2', 'markers', 'meg', 'pet', 'phase', 'phase1', 'phase2',
+    'phasediff', 'photo', 'physio', 'sbref', 'scans', 'sessions', 'stim', 'uCT'
+)
+SPECIFIC_DATATYPE_FIELDS = ('name', 'bids_suffixes', 'extensions', 'entities')
+NO_EXTENSION_FILES = ('README', 'CHANGES', 'LICENSE')
+NON_ENTITY_COMPONENTS = ('bids_suffix', 'extension', 'datatype')
 
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
