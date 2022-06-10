@@ -7,10 +7,11 @@ import json
 import os
 import sys
 from pathlib import Path
-from typing import Dict, Text, Tuple, Union
+from typing import Dict, List, Text, Tuple, Union
 
+__path__: List = [join(sys.path[0], '__init__.py')]
 URL: Text = 'https://github.com/FrancoisNadeau/bidspathlib/tree/main/json_docs'
-DOCS_PATH = Path(os.path.join('..', 'json_docs'))
+DOCS_PATH = Path(os.path.join(__path__[0], 'json_docs'))
 
 def _load_json(src: Union[Text, os.PathLike]) -> Dict:
     return json.loads(Path(src).read_text())
@@ -51,7 +52,7 @@ __dicts__: Tuple = (
     LCS_PARAMS, ENTITY_STRINGS_DESC, COMPONENTS_DESC
 )
 
-__all__ = [
+__all__: List = [
     "ENTITY_FIELDS", "DATATYPE_STRINGS", "ENTITIES_ORDER",
     "ENTITY_STRINGS", "NIFTI_EXTENSIONS", "SUFFIX_STRINGS",
     "SPECIFIC_DATATYPE_FIELDS", "BIDS_RECOMMENDED",
