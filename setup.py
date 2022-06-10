@@ -44,5 +44,5 @@ setup(
         'pyyaml ~= 6.0',
         'nilearn @ git+https://github.com/nilearn/nilearn.git#egg=nilearn'
     ],
-    package_data={'bidspathlib', os.path.join('constants', 'json_docs', '*.json')}
+    data_files=[('bidspathlib', os.path.listdir(os.path.join('constants', 'json_docs', '*.json')))}
 )
