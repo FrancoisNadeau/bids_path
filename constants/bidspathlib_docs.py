@@ -15,31 +15,30 @@ __path__ = [os.path.join('', '__init__.py')]
 # DOCS_PATH = os.path.join("**", "bidspathlib", "json_docs", "**")
 DOCS_PATH = resources.files('bidspathlib')
 
-DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
-FP_STRINGS_PATH, LCS_PARAMS_PATH = \
+DATATYPES_PATH, MODALITIES_PATH, E_DESC_PATH, N_DESC_PATH, FP_STRINGS_PATH = \
     sorted(iglob(DOCS_PATH))
 #     sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
 #                iglob(os.path.join('**', 'json_docs', '**'))))
 
-ENTITY_FIELDS = ('format', 'enum', 'entity', 'name', 'description', 'type')
-DATATYPE_STRINGS = (
+ENTITY_FIELDS: Tuple = ('format', 'enum', 'entity', 'name', 'description', 'type')
+DATATYPE_STRINGS: Tuple = (
     'anat', 'beh', 'dwi', 'eeg', 'fmap', 'func', 'ieeg',
     'meg', 'micr', 'perf', 'pet'
 )
-ENTITIES_ORDER = (
+ENTITIES_ORDER: Tuple = (
     'subject', 'session', 'sample', 'task', 'acquisition', 'ceagent',
     'tracer', 'stain', 'reconstruction', 'direction', 'run', 'modality',
     'echo', 'flip', 'inversion', 'mtransfer', 'part', 'processing',
     'hemisphere', 'space', 'split', 'recording', 'chunk', 'atlas',
     'resolution', 'density', 'label', 'description'
 )
-ENTITY_STRINGS = (
+ENTITY_STRINGS: Tuple = (
     'sub', 'ses', 'sample', 'task', 'acq', 'ce', 'trc', 'stain', 'rec', 'dir',
     'run', 'mod', 'echo', 'flip', 'inv', 'mt', 'part', 'proc', 'hemi', 'space',
     'split', 'recording', 'chunk', 'atlas', 'res', 'den', 'label', 'desc'
 )
-NIFTI_EXTENSIONS = ('.dtseries.nii', '.func.gii', '.gii', '.gii.gz', '.nii', '.nii.gz')
-SUFFIX_STRINGS = (
+NIFTI_EXTENSIONS: Tuple = ('.dtseries.nii', '.func.gii', '.gii', '.gii.gz', '.nii', '.nii.gz')
+SUFFIX_STRINGS: Tuple = (
     '2PE', 'BF', 'Chimap', 'CARS', 'CONF', 'DIC', 'DF', 'FLAIR', 'FLASH', 'FLUO',
     'IRT1', 'M0map', 'MEGRE', 'MESE', 'MP2RAGE', 'MPE', 'MPM', 'MTR', 'MTRmap',
     'MTS', 'MTVmap', 'MTsat', 'MWFmap', 'NLO', 'OCT', 'PC', 'PD', 'PDT2',
@@ -53,10 +52,10 @@ SUFFIX_STRINGS = (
     'magnitude1', 'magnitude2', 'markers', 'meg', 'pet', 'phase', 'phase1', 'phase2',
     'phasediff', 'photo', 'physio', 'sbref', 'scans', 'sessions', 'stim', 'uCT'
 )
-SPECIFIC_DATATYPE_FIELDS = ('name', 'bids_suffixes', 'extensions', 'entities')
-NO_EXTENSION_FILES = ('README', 'CHANGES', 'LICENSE')
-NON_ENTITY_COMPONENTS = ('bids_suffix', 'extension', 'datatype')
-DEPRECATED_BIDS_SUFFIXES = \
+SPECIFIC_DATATYPE_FIELDS: Tuple = ('name', 'bids_suffixes', 'extensions', 'entities')
+NO_EXTENSION_FILES: Tuple = ('README', 'CHANGES', 'LICENSE')
+NON_ENTITY_COMPONENTS: Tuple = ('bids_suffix', 'extension', 'datatype')
+DEPRECATED_BIDS_SUFFIXES: Dict = \
     {
       "T2star": {
         "long_name": "T2* image",
@@ -79,6 +78,40 @@ DEPRECATED_BIDS_SUFFIXES = \
         "change": "Replaced by PDw or PDmap."
       }
     }
+LCS_PARAMS: Dict = \
+    {
+    "simple": {
+        "high_pass": true,
+        "motion": "full",
+        "wm_csf": "basic",
+        "global_signal": "None",
+        "demean": true
+      },
+    "scrubbing": {
+        "high_pass": true,
+        "motion": "full",
+        "wm_csf": "full",
+        "global_signal": "None",
+        "scrub": 5.0,
+        "fd_threshold": 0.2,
+        "std_dvars_threshold": 3.0,
+        "demean": true
+      },
+    "compcor": {
+        "high_pass": true,
+        "motion": "full",
+        "compcor": "anat_combined",
+        "n_compcor": "all",
+        "demean": true
+      },
+    "ica_aroma": {
+        "high_pass": true,
+        "wm_csf": "basic",
+        "global_signal": "None",
+        "ica_aroma": "full",
+        "demean": true
+      }
+}
 
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
