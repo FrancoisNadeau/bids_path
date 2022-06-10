@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Dict, Text, Tuple, Union
 
 URL: Text = 'https://github.com/FrancoisNadeau/bidspathlib/tree/main/json_docs'
-DOCS_PATH = Path(os.path.join('.', 'json_docs'))
+DOCS_PATH = Path(os.path.join('..', 'json_docs'))
 
 def _load_json(src: Union[Text, os.PathLike]) -> Dict:
     return json.loads(Path(src).read_text())
