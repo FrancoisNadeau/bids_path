@@ -6,6 +6,7 @@ BIDS documentation and variable names in a dict.
 import json
 import os
 import sys
+from glob import iglob
 from pathlib import Path
 from typing import Dict, List, Text, Tuple, Union
 
