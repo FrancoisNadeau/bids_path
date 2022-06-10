@@ -78,40 +78,6 @@ DEPRECATED_BIDS_SUFFIXES: Dict = \
         "change": "Replaced by PDw or PDmap."
       }
     }
-LCS_PARAMS: Dict = \
-    {
-    "simple": {
-        "high_pass": true,
-        "motion": "full",
-        "wm_csf": "basic",
-        "global_signal": "None",
-        "demean": true
-      },
-    "scrubbing": {
-        "high_pass": true,
-        "motion": "full",
-        "wm_csf": "full",
-        "global_signal": "None",
-        "scrub": 5.0,
-        "fd_threshold": 0.2,
-        "std_dvars_threshold": 3.0,
-        "demean": true
-      },
-    "compcor": {
-        "high_pass": true,
-        "motion": "full",
-        "compcor": "anat_combined",
-        "n_compcor": "all",
-        "demean": true
-      },
-    "ica_aroma": {
-        "high_pass": true,
-        "wm_csf": "basic",
-        "global_signal": "None",
-        "ica_aroma": "full",
-        "demean": true
-      }
-}
 
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
@@ -135,7 +101,7 @@ __tuples__: Tuple = (
 __dicts__: Tuple = (
     MODALITIES, DEPRECATED_BIDS_SUFFIXES,
     DATATYPES_DESCRIPTION, FP_STRINGS,
-    LCS_PARAMS, ENTITY_STRINGS_DESC, COMPONENTS_DESC
+    ENTITY_STRINGS_DESC, COMPONENTS_DESC
 )
 
 __all__: List = [
@@ -144,8 +110,7 @@ __all__: List = [
     "SPECIFIC_DATATYPE_FIELDS", "BIDS_RECOMMENDED",
     "NO_EXTENSION_FILES", "NON_ENTITY_COMPONENTS",
     "COMPONENTS_NAMES", "ENTITY_COLLECTOR_SLOTS",
-    "MODALITIES", "ENTITY_DESC", "NON_ENTITY_DESC",
-    "LCS_PARAMS", "FP_STRINGS",
+    "MODALITIES", "ENTITY_DESC", "NON_ENTITY_DESC", "FP_STRINGS",
     "DATATYPES_DESCRIPTION", "DEPRECATED_BIDS_SUFFIXES",
     "ENTITY_STRINGS_DESC", "COMPONENTS_DESC",
     "__tuples__", "__dicts__"
