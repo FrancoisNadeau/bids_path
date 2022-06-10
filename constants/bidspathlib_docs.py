@@ -14,8 +14,9 @@ __path__ = [os.path.join('', '__init__.py')]
 
 DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
 FP_STRINGS_PATH, BASE_DATA_PATH, LCS_PARAMS_PATH = \
-    sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
-               iglob(os.path.join('**', 'json_docs', '**'))))
+    sorted(os.path.join("**", "bidspathlib", "json_docs", "**"))
+#     sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
+#                iglob(os.path.join('**', 'json_docs', '**'))))
 
 base_data_strings: Dict = json.loads(BASE_DATA_PATH.read_text())
 
