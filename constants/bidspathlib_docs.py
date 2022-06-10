@@ -56,6 +56,29 @@ SUFFIX_STRINGS = (
 SPECIFIC_DATATYPE_FIELDS = ('name', 'bids_suffixes', 'extensions', 'entities')
 NO_EXTENSION_FILES = ('README', 'CHANGES', 'LICENSE')
 NON_ENTITY_COMPONENTS = ('bids_suffix', 'extension', 'datatype')
+DEPRECATED_BIDS_SUFFIXES = \
+    {
+      "T2star": {
+        "long_name": "T2* image",
+        "description": "Ambiguous, may refer to a parametric image or to a conventional image.",
+        "change": "Replaced by T2starw or T2starmap."
+      },
+      "FLASH": {
+        "long_name": "Fast-Low-Angle-Shot image",
+        "description": "\n".join([
+            "Vendor-specific implementation for spoiled gradient echo acquisition.,
+            "Commonly used for rapid anatomical imaging and different qMRI applications.",
+            "For a single file, it does not convey image contrast info.",
+            "In a file collection, may result in between-application filename conflicts."
+        ]),
+        "change": "Removed from suffixes."
+      },
+      "PD": {
+        "long_name": "Proton density image",
+        "description": "Ambiguous, may refer to a parametric image or to a conventional image.",
+        "change": "Replaced by PDw or PDmap."
+      }
+    }
 
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
@@ -89,7 +112,8 @@ __all__: List = [
     "NO_EXTENSION_FILES", "NON_ENTITY_COMPONENTS",
     "COMPONENTS_NAMES", "ENTITY_COLLECTOR_SLOTS",
     "MODALITIES", "ENTITY_DESC", "NON_ENTITY_DESC",
-    "LCS_PARAMS", "FP_STRINGS", "DEPRECATED_BIDS_SUFFIXES",
-    "DATATYPES_DESCRIPTION", "ENTITY_STRINGS_DESC", "COMPONENTS_DESC",
+    "LCS_PARAMS", "FP_STRINGS",
+    "DATATYPES_DESCRIPTION", "DEPRECATED_BIDS_SUFFIXES",
+    "ENTITY_STRINGS_DESC", "COMPONENTS_DESC",
     "__tuples__", "__dicts__"
 ]
