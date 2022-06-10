@@ -12,13 +12,6 @@ from pathlib import Path
 from typing import Dict, List, Text, Tuple, Union
 
 __path__ = [os.path.join('', '__init__.py')]
-# DOCS_PATH = os.path.join("**", "bidspathlib", "json_docs", "**")
-DOCS_PATH = resources.files('bidspathlib')
-
-DATATYPES_PATH, MODALITIES_PATH, E_DESC_PATH, N_DESC_PATH, FP_STRINGS_PATH = \
-    sorted(iglob(DOCS_PATH))
-#     sorted(map(lambda p: Path(p).absolute().relative_to(Path.cwd()).absolute(),
-#                iglob(os.path.join('**', 'json_docs', '**'))))
 
 ENTITY_FIELDS: Tuple = ('format', 'enum', 'entity', 'name', 'description', 'type')
 DATATYPE_STRINGS: Tuple = (
@@ -80,7 +73,9 @@ DEPRECATED_BIDS_SUFFIXES: Dict = \
     }
 ENTITY_DESC: Dict = \
     {
-  "subject": "\n".join(["A person or animal participating in the study."]),
+  "subject": "\n".join([
+      "A person or animal participating in the study."
+  ]),
   "session": "\n".join[
       "A logical grouping of neuroimaging and behavioral data consistent across subjects.",
       "Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.",
@@ -289,14 +284,28 @@ ENTITY_DESC: Dict = \
   ])
 }
 
+NON_ENTITY_DESC: Dict = \
+    {
+    "bids_suffix": "\n".join([
+        "Alphanumeric value, located after the key-value_ pairs",
+        "(thus after the final _), right before the File extension.",
+        "For example, it is eeg in sub-05_task-matchingpennies_eeg.vhdr"
+    ]),
+    "extension": "\n".join([
+        "Portion of the filename after the left-most",
+        "period (.) preceded by any other alphanumeric.",
+        "For example, .gitignore does not have a file extension,",
+        "but the file extension of test.nii.gz is .nii.gz.",
+        "Note that the left-most period is included in the file extension."
+    ]),
+    "datatype": "\n".join([
+        "Functional group of different types of data."
+    ])
+}
+
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
 
-MODALITIES: Dict = json.loads(MODALITIES_PATH.read_text())
-NON_ENTITY_DESC: Dict = json.loads(N_DESC_PATH.read_text())
-LCS_PARAMS: Dict = json.loads(LCS_PARAMS_PATH.read_text())
-FP_STRINGS: Dict = json.loads(FP_STRINGS_PATH.read_text())
-DEPRECATED_BIDS_SUFFIXES: Dict = json.loads(DEPR_S_PATH.read_text())
 DATATYPES_DESCRIPTION: Dict = json.loads(DATATYPES_PATH.read_text())
 ENTITY_STRINGS_DESC: Dict = dict(zip(ENTITY_STRINGS, ENTITY_DESC.values()))
 COMPONENTS_DESC: Dict = {**ENTITY_STRINGS_DESC, **NON_ENTITY_DESC}
