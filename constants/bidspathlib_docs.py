@@ -3,17 +3,17 @@
 BIDS documentation and variable names in a dict.
 
 """
-import importlib
 import json
 import os
 import sys
 from glob import iglob
+from importlib import resources
 from pathlib import Path
 from typing import Dict, List, Text, Tuple, Union
 
 __path__ = [os.path.join('', '__init__.py')]
 # DOCS_PATH = os.path.join("**", "bidspathlib", "json_docs", "**")
-DOCS_PATH = importlib.resources.files('bidspathlib')
+DOCS_PATH = resources.files('bidspathlib')
 
 DATATYPES_PATH, MODALITIES_PATH, DEPR_S_PATH, E_DESC_PATH, N_DESC_PATH, \
 FP_STRINGS_PATH, LCS_PARAMS_PATH = \
