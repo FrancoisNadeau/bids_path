@@ -13,6 +13,7 @@ from . import (
     bidspathlib_exceptions, Modality, fMRIPrepEntities
 )
 from .Modality import *
+from .bidspathlib_docs import *
 from .BIDSPathConstants import *
 from .bidspathlib_exceptions import *
 from .fMRIPrepEntities import *
