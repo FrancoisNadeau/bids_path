@@ -58,7 +58,7 @@ DEPRECATED_BIDS_SUFFIXES: Dict = \
       "FLASH": {
         "long_name": "Fast-Low-Angle-Shot image",
         "description": "\n".join([
-            "Vendor-specific implementation for spoiled gradient echo acquisition.,
+            "Vendor-specific implementation for spoiled gradient echo acquisition.",
             "Commonly used for rapid anatomical imaging and different qMRI applications.",
             "For a single file, it does not convey image contrast info.",
             "In a file collection, may result in between-application filename conflicts."
