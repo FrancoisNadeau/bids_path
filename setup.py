@@ -43,8 +43,5 @@ setup(
         'pathlib2 ~= 2.3.7.post1',
         'pyyaml ~= 6.0',
         'nilearn @ git+https://github.com/nilearn/nilearn.git#egg=nilearn'
-    ],
-    data_files=[('bidspathlib', [os.path.join(DOCS_PATH, item)
-                                 for item in os.listdir(DOCS_PATH)])
-               ]
+    ]
 )
