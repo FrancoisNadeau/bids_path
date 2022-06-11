@@ -302,11 +302,1398 @@ NON_ENTITY_DESC: Dict = \
         "Functional group of different types of data."
     ])
 }
+DATATYPES_DESCRIPTION: Dict = \
+    {
+  "anat": {
+    "long_name": "Anatomical Magnetic Resonance Imaging",
+    "description": "Magnetic resonance imaging sequences designed to characterize static, anatomical features.",
+    "specific": {
+      "nonparametric": {
+        "bids_suffixes": [
+          "T1w",
+          "T2w",
+          "PDw",
+          "T2starw",
+          "FLAIR",
+          "inplaneT1",
+          "inplaneT2",
+          "PDT2",
+          "angio",
+          "T2star",
+          "FLASH",
+          "PD"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "part": "optional"
+        }
+      },
+      "parametric": {
+        "bids_suffixes": [
+          "T1map",
+          "T2map",
+          "T2starmap",
+          "R1map",
+          "R2map",
+          "R2starmap",
+          "PDmap",
+          "MTRmap",
+          "MTsat",
+          "UNIT1",
+          "T1rho",
+          "MWFmap",
+          "MTVmap",
+          "PDT2map",
+          "Chimap",
+          "S0map",
+          "M0map"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional"
+        }
+      },
+      "defacemask": {
+        "bids_suffixes": [
+          "defacemask"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "modality": "optional"
+        }
+      },
+      "multiecho": {
+        "bids_suffixes": [
+          "MESE",
+          "MEGRE"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "required",
+          "part": "optional"
+        }
+      },
+      "multiflip": {
+        "bids_suffixes": [
+          "VFA"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "optional",
+          "flip": "required",
+          "part": "optional"
+        }
+      },
+      "multiinversion": {
+        "bids_suffixes": [
+          "IRT1"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "inversion": "required",
+          "part": "optional"
+        }
+      },
+      "mp2rage": {
+        "bids_suffixes": [
+          "MP2RAGE"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "optional",
+          "flip": "optional",
+          "inversion": "required",
+          "part": "optional"
+        }
+      },
+      "vfamt": {
+        "bids_suffixes": [
+          "MPM",
+          "MTS"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "optional",
+          "flip": "required",
+          "mtransfer": "required",
+          "part": "optional"
+        }
+      },
+      "mtr": {
+        "bids_suffixes": [
+          "MTR"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "anat"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "mtransfer": "required",
+          "part": "optional"
+        }
+      }
+    }
+  },
+  "beh": {
+    "long_name": "Behavioral Data",
+    "description": "Behavioral data.",
+    "specific": {
+      "timeseries": {
+        "bids_suffixes": [
+          "stim",
+          "physio"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "beh"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional",
+          "recording": "optional"
+        }
+      },
+      "noncontinuous": {
+        "bids_suffixes": [
+          "events",
+          "beh"
+        ],
+        "extensions": [
+          ".tsv",
+          ".json"
+        ],
+        "datatypes": [
+          "beh"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      }
+    }
+  },
+  "dwi": {
+    "long_name": "Diffusion-Weighted Imaging",
+    "description": "Diffusion-weighted imaging (DWI).",
+    "specific": {
+      "dwi": {
+        "bids_suffixes": [
+          "dwi"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json",
+          ".bvec",
+          ".bval"
+        ],
+        "datatypes": [
+          "dwi"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "part": "optional"
+        }
+      },
+      "sbref": {
+        "bids_suffixes": [
+          "sbref"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "dwi"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "part": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "dwi"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "part": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  },
+  "eeg": {
+    "long_name": "Electroencephalography",
+    "description": "Electroencephalography",
+    "specific": {
+      "eeg": {
+        "bids_suffixes": [
+          "eeg"
+        ],
+        "extensions": [
+          ".json",
+          ".edf",
+          ".vhdr",
+          ".vmrk",
+          ".eeg",
+          ".set",
+          ".fdt",
+          ".bdf"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "channels": {
+        "bids_suffixes": [
+          "channels"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "coordsystem": {
+        "bids_suffixes": [
+          "coordsystem"
+        ],
+        "extensions": [
+          ".json"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "space": "optional"
+        }
+      },
+      "electrodes": {
+        "bids_suffixes": [
+          "electrodes"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "space": "optional"
+        }
+      },
+      "events": {
+        "bids_suffixes": [
+          "events"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "photo": {
+        "bids_suffixes": [
+          "photo"
+        ],
+        "extensions": [
+          ".jpg",
+          ".png",
+          ".tif"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "eeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  },
+  "fmap": {
+    "long_name": "Field maps",
+    "description": "MRI scans for estimating B0 inhomogeneity-induced distortions.",
+    "specific": {
+      "fieldmaps": {
+        "bids_suffixes": [
+          "phasediff",
+          "phase1",
+          "phase2",
+          "magnitude1",
+          "magnitude2",
+          "magnitude",
+          "fieldmap"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "pepolar": {
+        "bids_suffixes": [
+          "epi",
+          "m0scan"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "direction": "required",
+          "run": "optional"
+        }
+      },
+      "TB1DAM": {
+        "bids_suffixes": [
+          "TB1DAM"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "flip": "required",
+          "inversion": "optional",
+          "part": "optional"
+        }
+      },
+      "TB1EPI": {
+        "bids_suffixes": [
+          "TB1EPI"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "required",
+          "flip": "required",
+          "inversion": "optional",
+          "part": "optional"
+        }
+      },
+      "RFFieldMaps": {
+        "bids_suffixes": [
+          "TB1AFI",
+          "TB1TFL",
+          "TB1RFM",
+          "RB1COR"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "optional",
+          "flip": "optional",
+          "inversion": "optional",
+          "part": "optional"
+        }
+      },
+      "TB1SRGE": {
+        "bids_suffixes": [
+          "TB1SRGE"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "echo": "optional",
+          "flip": "required",
+          "inversion": "required",
+          "part": "optional"
+        }
+      },
+      "parametric": {
+        "bids_suffixes": [
+          "TB1map",
+          "RB1map"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "fmap"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "run": "optional",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional"
+        }
+      }
+    }
+  },
+  "func": {
+    "long_name": "Task-Based Magnetic Resonance Imaging",
+    "description": "Task (including resting state) imaging data",
+    "specific": {
+      "func": {
+        "bids_suffixes": [
+          "bold",
+          "cbv",
+          "sbref"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "func"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "echo": "optional",
+          "part": "optional"
+        }
+      },
+      "phase": {
+        "bids_suffixes": [
+          "phase"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "func"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "echo": "optional"
+        }
+      },
+      "events": {
+        "bids_suffixes": [
+          "events"
+        ],
+        "extensions": [
+          ".tsv",
+          ".json"
+        ],
+        "datatypes": [
+          "func"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "func"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "ceagent": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  },
+  "ieeg": {
+    "long_name": "Intracranial electroencephalography",
+    "description": "Intracranial electroencephalography (iEEG) or electrocorticography (ECoG) data",
+    "specific": {
+      "ieeg": {
+        "bids_suffixes": [
+          "ieeg"
+        ],
+        "extensions": [
+          ".mefd/",
+          ".json",
+          ".edf",
+          ".vhdr",
+          ".eeg",
+          ".vmrk",
+          ".set",
+          ".fdt",
+          ".nwb"
+        ],
+        "datatypes": [
+          "ieeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "channels": {
+        "bids_suffixes": [
+          "channels"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "ieeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "coordsystem": {
+        "bids_suffixes": [
+          "coordsystem"
+        ],
+        "extensions": [
+          ".json"
+        ],
+        "datatypes": [
+          "ieeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "space": "optional"
+        }
+      },
+      "electrodes": {
+        "bids_suffixes": [
+          "electrodes"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "ieeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "space": "optional"
+        }
+      },
+      "events": {
+        "bids_suffixes": [
+          "events"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "ieeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "photo": {
+        "bids_suffixes": [
+          "photo"
+        ],
+        "extensions": [
+          ".jpg",
+          ".png",
+          ".tif"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "ieeg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  },
+  "meg": {
+    "long_name": "Magnetoencephalography",
+    "description": "Magnetoencephalography",
+    "specific": {
+      "meg": {
+        "bids_suffixes": [
+          "meg"
+        ],
+        "extensions": [
+          "/",
+          ".ds/",
+          ".json",
+          ".fif",
+          ".sqd",
+          ".con",
+          ".raw",
+          ".ave",
+          ".mrk",
+          ".kdf",
+          ".mhd",
+          ".trg",
+          ".chn"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional",
+          "processing": "optional",
+          "split": "optional"
+        }
+      },
+      "calibration": {
+        "bids_suffixes": [
+          "meg"
+        ],
+        "extensions": [
+          ".dat"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": {
+            "requirement": "required",
+            "type": "string",
+            "enum": [
+              "calibration"
+            ]
+          }
+        }
+      },
+      "crosstalk": {
+        "bids_suffixes": [
+          "meg"
+        ],
+        "extensions": [
+          ".fif"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": {
+            "requirement": "required",
+            "type": "string",
+            "enum": [
+              "crosstalk"
+            ]
+          }
+        }
+      },
+      "headshape": {
+        "bids_suffixes": [
+          "headshape"
+        ],
+        "extensions": [
+          ".*",
+          ".pos"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional"
+        }
+      },
+      "markers": {
+        "bids_suffixes": [
+          "markers"
+        ],
+        "extensions": [
+          ".sqd",
+          ".mrk"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "optional",
+          "acquisition": "optional",
+          "space": "optional"
+        }
+      },
+      "coordsystem": {
+        "bids_suffixes": [
+          "coordsystem"
+        ],
+        "extensions": [
+          ".json"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional"
+        }
+      },
+      "channels": {
+        "bids_suffixes": [
+          "channels"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional",
+          "processing": "optional"
+        }
+      },
+      "events": {
+        "bids_suffixes": [
+          "events"
+        ],
+        "extensions": [
+          ".json",
+          ".tsv"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional"
+        }
+      },
+      "photo": {
+        "bids_suffixes": [
+          "photo"
+        ],
+        "extensions": [
+          ".jpg",
+          ".png",
+          ".tif"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "meg"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "acquisition": "optional",
+          "run": "optional",
+          "processing": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  },
+  "micr": {
+    "long_name": "Microscopy",
+    "description": "Microscopy",
+    "specific": {
+      "microscopy": {
+        "bids_suffixes": [
+          "TEM",
+          "SEM",
+          "uCT",
+          "BF",
+          "DF",
+          "PC",
+          "DIC",
+          "FLUO",
+          "CONF",
+          "PLI",
+          "CARS",
+          "2PE",
+          "MPE",
+          "SR",
+          "NLO",
+          "OCT",
+          "SPIM"
+        ],
+        "extensions": [
+          ".ome.tif",
+          ".ome.btf",
+          ".png",
+          ".tif",
+          ".json"
+        ],
+        "datatypes": [
+          "micr"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "sample": "required",
+          "acquisition": "optional",
+          "stain": "optional",
+          "run": "optional",
+          "chunk": "optional"
+        }
+      },
+      "photo": {
+        "bids_suffixes": [
+          "photo"
+        ],
+        "extensions": [
+          ".jpg",
+          ".png",
+          ".tif"
+        ],
+        "datatypes": [
+          "micr"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "sample": "required",
+          "acquisition": "optional"
+        }
+      }
+    }
+  },
+  "perf": {
+    "long_name": "Perfusion imaging",
+    "description": "Blood perfusion imaging data, including arterial spin labeling (ASL)",
+    "specific": {
+      "asl": {
+        "bids_suffixes": [
+          "asl",
+          "m0scan"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "perf"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional"
+        }
+      },
+      "aslcontext": {
+        "bids_suffixes": [
+          "aslcontext"
+        ],
+        "extensions": [
+          ".tsv",
+          ".json"
+        ],
+        "datatypes": [
+          "perf"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional"
+        }
+      },
+      "asllabeling": {
+        "bids_suffixes": [
+          "asllabeling"
+        ],
+        "extensions": [
+          ".jpg"
+        ],
+        "datatypes": [
+          "perf"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "run": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "perf"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "acquisition": "optional",
+          "reconstruction": "optional",
+          "direction": "optional",
+          "run": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  },
+  "pet": {
+    "long_name": "Positron Emission Tomography",
+    "description": "Positron emission tomography data",
+    "specific": {
+      "pet": {
+        "bids_suffixes": [
+          "pet"
+        ],
+        "extensions": [
+          ".nii.gz",
+          ".nii",
+          ".json"
+        ],
+        "datatypes": [
+          "pet"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "optional",
+          "tracer": "optional",
+          "reconstruction": "optional",
+          "run": "optional"
+        }
+      },
+      "blood": {
+        "bids_suffixes": [
+          "blood"
+        ],
+        "extensions": [
+          ".tsv",
+          ".json"
+        ],
+        "datatypes": [
+          "pet"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "optional",
+          "tracer": "optional",
+          "reconstruction": "optional",
+          "run": "optional",
+          "recording": "required"
+        }
+      },
+      "events": {
+        "bids_suffixes": [
+          "events"
+        ],
+        "extensions": [
+          ".tsv",
+          ".json"
+        ],
+        "datatypes": [
+          "pet"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "required",
+          "tracer": "optional",
+          "reconstruction": "optional",
+          "run": "optional"
+        }
+      },
+      "timeseries": {
+        "bids_suffixes": [
+          "physio",
+          "stim"
+        ],
+        "extensions": [
+          ".tsv.gz",
+          ".json"
+        ],
+        "datatypes": [
+          "pet"
+        ],
+        "entities": {
+          "subject": "required",
+          "session": "optional",
+          "task": "optional",
+          "tracer": "optional",
+          "reconstruction": "optional",
+          "run": "optional",
+          "recording": "optional"
+        }
+      }
+    }
+  }
+}
 
 COMPONENTS_NAMES: Tuple = ENTITY_STRINGS+NON_ENTITY_COMPONENTS
 ENTITY_COLLECTOR_SLOTS: Tuple = tuple(set(ENTITIES_ORDER + COMPONENTS_NAMES))
 
-DATATYPES_DESCRIPTION: Dict = json.loads(DATATYPES_PATH.read_text())
 ENTITY_STRINGS_DESC: Dict = dict(zip(ENTITY_STRINGS, ENTITY_DESC.values()))
 COMPONENTS_DESC: Dict = {**ENTITY_STRINGS_DESC, **NON_ENTITY_DESC}
 
