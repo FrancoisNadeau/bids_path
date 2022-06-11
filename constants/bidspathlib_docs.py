@@ -83,14 +83,14 @@ ENTITY_DESC: Dict = \
       "However, for example, if a subject has to leave the scanner room and then",
       "be re-positioned on the scanner bed, the set of MRI acquisitions will still",
       "be considered as a session and match sessions acquired in other subjects.",
-      "Similarly, in situations where different data types are obtained over several visits "
+      "Similarly, in situations where different data types are obtained over several visits ",
       "(example fMRI on one day followed by DWI the day after) those can be grouped in one session.",
       "Defining multiple sessions is appropriate when several identical or similar",
       "data acquisitions are planned and performed on all -or most- subjects,",
       "often in the case of some intervention between sessions (for example, training)."
   ]),
   "sample": "\n".join([
-      "A sample pertaining to a subject such as tissue, primary cell\nor cell-free sample.",
+      "A sample pertaining to a subject such as tissue, primary cell or cell-free sample.",
       "The `sample-<label>` key/value pair is used to distinguish between different",
       "samples from the same subject.",
       "The label MUST be unique per subject and is RECOMMENDED to be unique",
