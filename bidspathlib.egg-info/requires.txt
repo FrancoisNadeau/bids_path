@@ -1,0 +1,4 @@
+bids-validator~=1.9.4
+pathlib2~=2.3.7.post1
+pyyaml~=6.0
+nilearn@ git+https://github.com/nilearn/nilearn.git#egg=nilearn
