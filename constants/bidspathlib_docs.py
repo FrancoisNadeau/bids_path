@@ -71,23 +71,24 @@ DEPRECATED_BIDS_SUFFIXES: Dict = \
         "change": "Replaced by PDw or PDmap."
       }
     }
+
 ENTITY_DESC: Dict = \
     {
-  "subject": "\n".join([
-      "A person or animal participating in the study."
-  ]),
-  "session": "\n".join[
-      "A logical grouping of neuroimaging and behavioral data consistent across subjects.",
-      "Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.",
-      "In general, subjects will stay in the scanner during one session."
-      "However, for example, if a subject has to leave the scanner room and then",
-      "be re-positioned on the scanner bed, the set of MRI acquisitions will still",
-      "be considered as a session and match sessions acquired in other subjects.",
-      "Similarly, in situations where different data types are obtained over several visits ",
-      "(example fMRI on one day followed by DWI the day after) those can be grouped in one session.",
-      "Defining multiple sessions is appropriate when several identical or similar",
-      "data acquisitions are planned and performed on all -or most- subjects,",
-      "often in the case of some intervention between sessions (for example, training)."
+    "subject": "\n".join([
+        "A person or animal participating in the study."
+    ]),
+    "session": "\n".join[
+        "A logical grouping of neuroimaging and behavioral data consistent across subjects.",
+        "Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.",
+        "In general, subjects will stay in the scanner during one session."
+        "However, for example, if a subject has to leave the scanner room and then",
+        "be re-positioned on the scanner bed, the set of MRI acquisitions will still",
+        "be considered as a session and match sessions acquired in other subjects.",
+        "Similarly, in situations where different data types are obtained over several visits ",
+        "(example fMRI on one day followed by DWI the day after) those can be grouped in one session.",
+        "Defining multiple sessions is appropriate when several identical or similar",
+        "data acquisitions are planned and performed on all -or most- subjects,",
+        "often in the case of some intervention between sessions (for example, training)."
   ]),
   "sample": "\n".join([
       "A sample pertaining to a subject such as tissue, primary cell or cell-free sample.",
@@ -97,8 +98,8 @@ ENTITY_DESC: Dict = \
       "throughout the dataset."
   ]),
   "task": "\n".join([
-      "Each task has a unique label that MUST only consist of letters and/or\nnumbers.",
-      "Other characters, including spaces and underscores, are not\nallowed.",
+      "Each task has a unique label that MUST only consist of letters and/or numbers.",
+      "Other characters, including spaces and underscores, are not allowed.",
       "Those labels MUST be consistent across subjects and sessions."
   ]),
   "acquisition": "\n".join([
