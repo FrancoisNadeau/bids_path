@@ -28,7 +28,6 @@ BIDS_DOCS: Dict = {
     'BIDS_components_description': COMPONENTS_DESC
 }
 LCS_PARAMS: Dict = \
-    LCS_PARAMS: Dict = \
     {
     "simple": {
         "high_pass": true,
