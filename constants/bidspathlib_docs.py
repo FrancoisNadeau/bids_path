@@ -77,7 +77,7 @@ ENTITY_DESC: Dict = \
     "subject": "\n".join([
         "A person or animal participating in the study."
     ]),
-    "session": "\n".join[
+    "session": "\n".join([
         "A logical grouping of neuroimaging and behavioral data consistent across subjects.",
         "Session can (but doesn't have to) be synonymous to a visit in a longitudinal study.",
         "In general, subjects will stay in the scanner during one session."
@@ -89,7 +89,7 @@ ENTITY_DESC: Dict = \
         "Defining multiple sessions is appropriate when several identical or similar",
         "data acquisitions are planned and performed on all -or most- subjects,",
         "often in the case of some intervention between sessions (for example, training)."
-  ]),
+    ]),
   "sample": "\n".join([
       "A sample pertaining to a subject such as tissue, primary cell or cell-free sample.",
       "The `sample-<label>` key/value pair is used to distinguish between different",
