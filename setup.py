@@ -7,9 +7,6 @@ from setuptools import setup
 AUTHOR = 'Francois Nadeau'
 EMAIL = 'francois.nadeau1@gmail.com'
 
-DOCS_PATH_PARTS = (sys.prefix, '**', 'bidspathlib', 'json_docs')
-DOCS_PATH = next(iglob(os.path.join(*DOCS_PATH_PARTS)))
-
 setup(
     name='bidspathlib',
     version='0.0.8.6',
