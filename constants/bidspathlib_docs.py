@@ -44,7 +44,7 @@ DOCS_DIRS: List = sorted(map(lambda d: os.path.join(DATA_DIR, d),
 JSON_DOCS_DIR, YAML_DOCS_DIR = DOCS_DIRS
 
 JSON_DOCS: Tuple = tuple(map(lambda j: json.loads(Path(j).read_text()),
-                             sorted(Path(JSON_DOCS_DIR).iterdir())[:-1]))
+                             sorted(Path(JSON_DOCS_DIR).iterdir())))
 
 BIDS_RECOMMENDED, BIDS_DATATYPES,\
     DATA_MODALITIES, ENTITY_DESC, DEPRECATED_BIDS_SUFFIXES, \
