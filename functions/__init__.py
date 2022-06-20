@@ -35,8 +35,7 @@ __all__ = [
     "GetBidsignore", "GetDerivativesNames",
     # BIDSFileFunctions
     "ShapeLength", "GetSidecar", "GetFMRI", "GetEvents", "GetBeh",
-    "GetBrainMask", "GetAnat", "GetMD5CheckSum", "GetSha1Sum",
-    "GetFrameTimes", "GetImgHeader", "GetNiftiImage", "GetTR",
+    "GetBrainMask", "GetAnat", "GetFrameTimes", "GetImgHeader", "GetNiftiImage", "GetTR",
     # BIDSFileID
     "IsNifti", "Is4D", "Is3D", "IsEvent", "IsBeh", "IsPhysio", "IsSidecar",
     # BIDSDirID

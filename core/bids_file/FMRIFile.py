@@ -10,7 +10,6 @@ from os import PathLike
 from typing import Dict, Iterable, Union, Text, Tuple
 
 from ...general_methods import docstring_parameter
-from ...functions.BIDSFileFunctions import GetEvents
 from ...constants.bidspathlib_docs import (
     BidsRecommended, BIDS_RECOMMENDED
 )
@@ -42,13 +41,6 @@ class FMRIFile(BIDSFileAbstract):
 
     def __init__(self, src: Union[Text, PathLike], *args, **kwargs):
         super().__init__(src, *args, **kwargs)
-
-    @staticmethod
-    @docstring_parameter(GetEvents.__doc__)
-    def get_events_file(src: Union[Text, PathLike], **kwargs
-                        ) -> Union[Text, PathLike]:
-        """{0}\n"""
-        return GetEvents(src, **kwargs)
 
     @staticmethod
     @docstring_parameter(GetNiftiImage.__doc__)

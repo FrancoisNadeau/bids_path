@@ -3,10 +3,11 @@
 General purpose methods that can work independently of ``bidspathlib``.
 
 """
-
+import hashlib
 import inspect
 import os
 import re
+from gzip import decompress
 from os import PathLike
 from pathlib import Path
 from typing import (
@@ -247,15 +248,40 @@ def _add_root(src: Union[Text, PathLike]) -> Union[Text, PathLike]:
     return os.path.join(root_path(), str(src))
 
 
+def GetHashCheckSum(src: Union[Text, PathLike],
+                    algo: Text = 'sha256',
+                    unzip: bool = False) -> Text:
+    """
+    Returns the desired hash checksum of a file as a hexadecimal string.
+
+    Args:
+        src: Text or PathLike
+            Path of a file.
+
+        unzip: bool (Default=False)
+            Indicates if the bytes stream should be decompressed
+            using ``gzip`` or not.
+
+    Returns: Text
+        String of double length, containing only hexadecimal digits.
+    """
+    m = getattr(hashlib, algo)()
+    with open(src, mode='rb') as file:
+        [m.update(line) if not unzip else decompress(line)
+         for line in file.readlines()]
+        file.close()
+    return m.hexdigest()
+
+
 __methods__: Tuple = (
-    docstring_parameter, is_hidden, flatten, get_default_args,
+    docstring_parameter, GetHashCheckSum, is_hidden, flatten, get_default_args,
     camel_to_snake, Snake2Camel, SetFromDict,
     _add_root, root_path,
     SubclassesRecursive, rev_dict
 )
 
 __all__: List = [
-    "docstring_parameter", "is_hidden", "flatten",
+    "docstring_parameter", "GetHashCheckSum", "is_hidden", "flatten",
     "get_default_args", "camel_to_snake", "Snake2Camel",
     "SetFromDict", "SubclassesRecursive", "rev_dict",
     '_add_root', 'root_path',
