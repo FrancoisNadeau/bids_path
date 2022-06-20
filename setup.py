@@ -11,7 +11,7 @@ readme = (Path(__file__).parent/'README.md').read_text()
 
 setup(
     name='bidspathlib',
-    version='0.0.8.8.6',
+    version='0.0.8.8.7',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'
