@@ -23,7 +23,6 @@ DATA_MODALITIES, NIFTI_EXTENSIONS
 from .bidspathlib_exceptions import (
     NiftiError, NotNiftiFileError, Not3DError, Not4DError
 )
-# from .BIDSPathConstants import *
 from .DataModality import DataModality, DataModalities, DATA_MODALITIES
 from .fMRIPrepEntities import FMRIPrepEntities
 

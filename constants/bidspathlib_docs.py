@@ -45,7 +45,7 @@ JSON_DOCS_DIR, YAML_DOCS_DIR = DOCS_DIRS
 
 JSON_DOCS: Tuple = tuple(map(lambda j: json.loads(Path(j).read_text()),
                              sorted(Path(JSON_DOCS_DIR).iterdir())[:-1]))
-print(sorted(os.listdir(JSON_DOCS_DIR)))
+
 BIDS_RECOMMENDED, BIDS_DATATYPES,\
     DATA_MODALITIES, ENTITY_DESC, DEPRECATED_BIDS_SUFFIXES, \
     NON_ENTITY_DESC, = JSON_DOCS
@@ -53,7 +53,7 @@ BIDS_RECOMMENDED, BIDS_DATATYPES,\
 DATATYPE_STRINGS: Tuple = tuple(BIDS_DATATYPES.keys())
 ENTITIES_ORDER: Tuple = tuple(ENTITY_DESC.keys())
 ENTITY_STRINGS: Tuple = tuple(map(lambda i: i.get('entity'), ENTITY_DESC.values()))
-print(sorted(os.listdir(YAML_DOCS_DIR)))
+
 YAML_DOCS: Tuple = tuple(map(lambda j: yaml.load(Path(j).read_text(),
                                                  Loader=yaml.FullLoader),
                              sorted(Path(YAML_DOCS_DIR).iterdir())))
