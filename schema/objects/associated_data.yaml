@@ -9,11 +9,11 @@ code:
     A folder in which to store any code used to generate the derivatives from the
     source data.
 derivatives:
-  name: Derivative data
+  name: Derivative json_docs
   description: |
     Derivative data
 sourcedata:
-  name: Source data
+  name: Source json_docs
   description: |
     Data before harmonization, reconstruction, and/or file format conversion
     (for example, E-Prime event logs or DICOM files).

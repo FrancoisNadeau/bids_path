@@ -1,5 +1,5 @@
 """
-Class to access a participant's derived data.
+Class to access a participant's derived json_docs.
 
 """
 
@@ -15,11 +15,11 @@ __path__ = [os.path.join('..', '__init__.py')]
 
 class Derivatives(BIDSDirAbstract):
     """
-    Class to access a participant's derived data.
+    Class to access a participant's derived json_docs.
 
     The participant (subject) level is chosen to
     better integrate FMRIPrep derivatives, as the
-    pipeline preprocesses raw data at this level.
+    pipeline preprocesses raw json_docs at this level.
 
     Notes:
         Experimental: Class bases are subject to change.

@@ -10,11 +10,22 @@ import re
 from os import PathLike
 from pathlib import Path
 from typing import (
-    Any, Dict, Iterable, List, NoReturn,
-    Optional, Text, Tuple, Union
+    Any, Dict, Iterable, List, MutableMapping,
+    NoReturn, Optional, Text, Tuple, Union
 )
 
 __path__ = [os.path.join('..', '__init__.py')]
+
+
+# def dotted(inpt: MutableMapping, *args, **kwargs) -> Bunch:
+#     """
+#     Enables ``dict`` recursive dot notation.
+#
+#     """
+#
+#     return json.loads(json.dumps(inpt),
+#                       object_hook=lambda x:
+#                       Bunch(**{**Bunch(), **x}))
 
 
 def docstring_parameter(*sub: Union[Text, Iterable]):

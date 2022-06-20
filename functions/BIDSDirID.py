@@ -18,7 +18,7 @@ from os.path import basename, isdir
 from pathlib import Path
 from typing import List, Union, Text, Tuple
 
-from ..constants.BIDSPathConstants import DATATYPE_STRINGS, DD_FILE
+from ..constants.bidspathlib_docs import DATATYPE_STRINGS, DD_FILE
 from .BIDSPathCoreFunctions import find_entity
 
 

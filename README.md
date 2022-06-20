@@ -110,6 +110,13 @@ Example
 {FMRIFile(PosixPath(/media/francois/seagate_5tb1/cimaqDr10LorisBids/sub-3239082/ses-V03/func/sub-3239082_ses-V03_task-rest_bold.nii.gz)), SideCarFile(PosixPath(/media/francois/seagate_5tb1/cimaqDr10LorisBids/sub-3239082/ses-V03/func/sub-3239082_ses-V03_task-memory_bold.json)), SideCarFile(PosixPath(/media/francois/seagate_5tb1/cimaqDr10LorisBids/sub-3239082/ses-V03/func/sub-3239082_ses-V03_task-rest_bold.json)), EventsFile(PosixPath(/media/francois/seagate_5tb1/cimaqDr10LorisBids/sub-3239082/ses-V03/func/sub-3239082_ses-V03_task-memory_events.tsv)), FMRIFile(PosixPath(/media/francois/seagate_5tb1/cimaqDr10LorisBids/sub-3239082/ses-V03/func/sub-3239082_ses-V03_task-memory_bold.nii.gz))}
 
 ```
+#### References
+BIDS Schema:
+
+[1] https://bids-specification.readthedocs.io/en/stable/schema/index.html
+
+[2] https://github.com/Donders-Institute/bidscoin/blob/master/bidscoin/schema/README.md
+
 MNE-BIDS : https://github.com/mne-tools/mne-bids
 
 TODO

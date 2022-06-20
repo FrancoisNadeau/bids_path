@@ -14,7 +14,7 @@
     acquisition: optional
     run: optional
 
-# European data format
+# European json_docs format
 - suffixes:
   - eeg
   extensions:

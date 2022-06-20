@@ -1,10 +1,10 @@
 ---
-# MEG data files
+# MEG json_docs files
 # First group
 - suffixes:
   - meg
   extensions:
-  - /  # corresponds to BTi/4D data
+  - /  # corresponds to BTi/4D json_docs
   - .ds/
   - .json
   - .fif

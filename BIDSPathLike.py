@@ -9,7 +9,7 @@ import os
 from abc import abstractmethod
 from typing import runtime_checkable, Protocol, Union, Text, Container
 
-from .constants.BIDSPathConstants import GenericAlias
+from .constants.bidspathlib_docs import GenericAlias
 
 _check_methods = getattr(collections._collections_abc, '_check_methods')
 __path__ = [os.path.join('..', '__init__.py')]

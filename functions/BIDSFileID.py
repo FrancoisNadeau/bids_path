@@ -18,7 +18,7 @@ from typing import List, Union, Text, Tuple
 from nibabel import Nifti1Image
 from nilearn.image import load_img
 
-from ..constants.BIDSPathConstants import NIFTI_EXTENSIONS, NIFTI_ERRORS
+from ..constants.bidspathlib_docs import NIFTI_EXTENSIONS, NIFTI_ERRORS
 from .BIDSPathCoreFunctions import find_extension, find_bids_suffix
 
 

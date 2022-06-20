@@ -6,7 +6,10 @@ Package containing the ``bidspathlib`` abstract base classes.
 import os.path
 
 from ..core.bids_file import *
-from ..core.bids_dir import *
+from ..core.bids_dir import (
+    BIDSDirAbstract, BIDSDir, Dataset, Datatype,
+    Session, Subject, Derivatives
+)
 from ..core.BIDSDirAbstract import BIDSDirAbstract
 from ..core.BIDSFileAbstract import BIDSFileAbstract
 from ..core.BIDSPathAbstract import BIDSPathAbstract
@@ -28,7 +31,8 @@ __all__ = [
     "GitAttributesFile", "LicenseFile", "MRIFile", "PhysioFile",
     "ReadMeFile", "SideCarFile",
     # BIDSDir
-    "BIDSDir", "Datatype", "Session", "Subject", "Derivatives"
+    "BIDSDirAbstract", "BIDSDir", "Dataset", "Datatype",
+    "Session", "Subject", "Derivatives"
 ]
 
 __path__ = [os.path.join('..', '..', '__init__.py')]

@@ -1,5 +1,5 @@
 """
-``BIDSFileAbstract`` subclass storing events data along BIDS entities.
+``BIDSFileAbstract`` subclass storing events json_docs along BIDS entities.
 
 """
 
@@ -14,7 +14,7 @@ __path__ = [os.path.join('..', '__init__.py')]
 
 class EventsFile(BIDSFileAbstract):
     """
-    ``BIDSFileAbstract`` subclass storing events data along BIDS entities.
+    ``BIDSFileAbstract`` subclass storing events json_docs along BIDS entities.
 
     Properties:
         table: DataFrame
@@ -22,7 +22,7 @@ class EventsFile(BIDSFileAbstract):
         intent: str or PathLike
             Path of the corresponding functional scan file.
         sidecar: dict
-            Description of each column found in property ``data``.
+            Description of each column found in property ``json_docs``.
 
     References:
         <https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/05-task-events.html>

@@ -18,7 +18,7 @@ from typing import (
     Dict, Iterable, List, Optional, Text, Tuple, Union
 )
 from ..MatchComponents import MatchComponents
-from ..constants.BIDSPathConstants import (
+from ..constants.bidspathlib_docs import (
     NIFTI_ERRORS, NIFTI_EXTENSIONS
 )
 from .BIDSFileID import (

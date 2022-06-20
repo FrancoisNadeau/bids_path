@@ -8,8 +8,8 @@ from os import PathLike
 from os.path import join
 from typing import Tuple, Union
 
-from ...constants.BIDSPathConstants import (
-    Datatypes, DATATYPES_DESCRIPTION,
+from ...constants.bidspathlib_docs import (
+    Datatypes, BIDS_DATATYPES,
     DATATYPE_STRINGS, ENTITY_DESC
 )
 from ...core.BIDSDirAbstract import BIDSDirAbstract
@@ -54,7 +54,7 @@ class Session(BIDSDirAbstract):
          for key in _dtypes.keys()]
 
     @property
-    @docstring_parameter(Datatype.__doc__, DATATYPES_DESCRIPTION)
+    @docstring_parameter(Datatype.__doc__, BIDS_DATATYPES)
     def datatypes(self) -> Tuple:
         """{0}\n{1}\n"""
         def fetch_datatype(src: Union[str, PathLike]):

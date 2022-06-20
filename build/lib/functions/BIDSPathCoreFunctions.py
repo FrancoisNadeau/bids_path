@@ -14,7 +14,7 @@ from typing import (
     Dict, Generator, List, Optional, Pattern, Text, Tuple, Union
 )
 
-from ..constants.BIDSPathConstants import (
+from ..constants.bidspathlib_docs import (
     DATATYPE_STRINGS, DEPRECATED_BIDS_SUFFIXES, ENTITIES_ORDER,
     ENTITY_STRINGS, SUFFIX_PATTERNS
 )
@@ -144,7 +144,7 @@ def EntityGen(src: Union[Text, PathLike]) -> Generator:
 
     Args:
         src: str or PathLike
-            Path pointing to a single run data acquisition file.
+            Path pointing to a single run json_docs acquisition file.
 
     Returns: Generator[Tuple[str, str]]
         Yields strings corresponding to hyphen-separated
@@ -164,7 +164,7 @@ def EntityStringGen(src: Union[Text, PathLike]) -> Generator:
 
     Args:
         src: str or PathLike
-            Path pointing to a single run data acquisition file.
+            Path pointing to a single run json_docs acquisition file.
 
     Returns: Generator[Tuple[str, str]]
         Yields strings corresponding to hyphen-separated

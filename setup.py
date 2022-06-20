@@ -2,14 +2,16 @@
 import os
 import sys
 from glob import iglob
+from pathlib import Path
 from setuptools import setup
 
 AUTHOR = 'Francois Nadeau'
 EMAIL = 'francois.nadeau1@gmail.com'
+readme = (Path(__file__).parent/'README.md').read_text()
 
 setup(
     name='bidspathlib',
-    version='0.0.8.7',
+    version='0.0.8.8.6',
     packages=[
         'core', 'core.tests', 'core.bids_dir', 'core.bids_file',
         'constants', 'functions'
@@ -21,6 +23,8 @@ setup(
     author_email=EMAIL,
     maintainer_email=EMAIL,
     description='Python package applying Path object machinery to BIDS datasets.',
+    long_description=readme,
+    long_description_content_type  = 'text/x-rst',
     classifiers=[
         'Intended Audience :: Science/Research',
         'Intended Audience :: Developers',

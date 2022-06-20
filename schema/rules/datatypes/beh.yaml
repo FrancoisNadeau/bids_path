@@ -1,5 +1,5 @@
 ---
-# Continuous data
+# Continuous json_docs
 - suffixes:
   - stim
   - physio
@@ -14,7 +14,7 @@
     run: optional
     recording: optional
 
-# Non-continuous data
+# Non-continuous json_docs
 - suffixes:
   - events
   - beh

@@ -1,4 +1,3 @@
-
 """
 Documentation to help locate and match FMRIPrep derivatives.
 
@@ -11,7 +10,6 @@ from typing import Dict, List, Set, Tuple, Type
 
 __path__ = [os.path.join('..', '__init__.py')]
 
-
 FP_IMG_FILE_PATTERNS: Dict = {
     "aroma": "_desc-smoothAROMAnonaggr_bold",
     "nii.gz": "_space-.*_desc-preproc_bold.nii.gz",
@@ -21,9 +19,9 @@ FP_IMG_FILE_PATTERNS: Dict = {
 
 # anat
 FP_ANAT_NIFTI: Set = {
-'_desc-preproc_T1w.nii.gz', '_desc-brain_mask.nii.gz',
-'_dseg.nii.gz', '_label-CSF_probseg.nii.gz',
-'_label-GM_probseg.nii.gz', '_label-WM_probseg.nii.gz'
+    '_desc-preproc_T1w.nii.gz', '_desc-brain_mask.nii.gz',
+    '_dseg.nii.gz', '_label-CSF_probseg.nii.gz',
+    '_label-GM_probseg.nii.gz', '_label-WM_probseg.nii.gz'
 }
 FP_ANAT_TRANSFORMS: Set = {
     '_to-T1w_mode-image_xfm.h5', '_mode-image_xfm.h5'
@@ -73,10 +71,10 @@ __data__: Tuple = (
     FS_FUNC_NIFTI
 )
 field_names: Tuple = (
-'fp_img_file_patterns', 'fp_func_transforms', 'fp_confounds',
-'fp_aroma_confounds', 'fp_img_file_patterns', 'fp_anat_nifti',
-'fp_func_nifti', 'fs_spaces', 'fs_anat_gifti',
-'fs_anat_transforms', 'fs_func_nifti'
+    'fp_img_file_patterns', 'fp_func_transforms', 'fp_confounds',
+    'fp_aroma_confounds', 'fp_img_file_patterns', 'fp_anat_nifti',
+    'fp_func_nifti', 'fs_spaces', 'fs_anat_gifti',
+    'fs_anat_transforms', 'fs_func_nifti'
 )
 
 _dict: Dict = dict(zip(field_names, __data__))

@@ -7,7 +7,7 @@ from typing import Any, Iterator, Text, Union
 
 from ..core.BIDSPathAbstract import BIDSPathAbstract
 from ..core.bids_file.BIDSFile import BIDSFile
-from ..constants.BIDSPathConstants import ENTITY_STRINGS
+from ..constants.bidspathlib_docs import ENTITY_STRINGS
 from ..general_methods import flatten, is_hidden
 
 _bases = (BIDSPathAbstract, Collection)
@@ -49,8 +49,8 @@ class BIDSDirAbstract(*_bases):
     @classmethod
     def __prepare__(cls, src: Union[Text, PathLike]):
         subclass_dict = BIDSDirAbstract.subclass_dict()
-        if not cls.isdir(src):
-            return src
+        # if not cls.isdir(src):
+        #     return src
         _mapper = (
             (cls.is_datatype_dir(src), 'Datatype'),
             (cls.is_session_dir(src), 'Session'),
@@ -58,11 +58,15 @@ class BIDSDirAbstract(*_bases):
             (cls.is_bids_root_dir(src), 'Dataset'),
             (cls.isderivatives(src), 'Derivatives')
         )
-        _cls = next(filter(lambda item: bool(item[0]), _mapper))
-        keywords = dict(zip(ENTITY_STRINGS, super().__get_entities__(src)))
-        subclass = subclass_dict[_cls[1]](src)
-        subclass.__set_from_dict__(keywords)
-        return subclass
+        try:
+            assert cls.isdir(src)
+            _cls = next(filter(lambda item: bool(item[0]), _mapper))
+            keywords = dict(zip(ENTITY_STRINGS, super().__get_entities__(src)))
+            subclass = subclass_dict[_cls[1]](src)
+            subclass.__set_from_dict__(keywords)
+            return subclass
+        except StopIteration:
+            return src
 
     def glob(self, pattern: Text) -> Iterator:
         """

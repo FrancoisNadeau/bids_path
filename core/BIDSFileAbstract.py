@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, Text, Union
 
 from ..general_methods import docstring_parameter
-from ..constants.BIDSPathConstants import ENTITY_STRINGS
+from ..constants.bidspathlib_docs import ENTITY_STRINGS
 from ..core.BIDSPathAbstract import BIDSPathAbstract
 from ..functions.BIDSFileFunctions import (
     GetAnat, GetBeh, GetBrainMask, GetEvents,

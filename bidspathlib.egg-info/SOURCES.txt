@@ -7,7 +7,7 @@ bidspathlib.egg-info/dependency_links.txt
 bidspathlib.egg-info/requires.txt
 bidspathlib.egg-info/top_level.txt
 constants/BIDSPathConstants.py
-constants/Modality.py
+constants/DataModality.py
 constants/__init__.py
 constants/bidspathlib_docs.py
 constants/bidspathlib_exceptions.py

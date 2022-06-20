@@ -1,5 +1,5 @@
 """
-Class for physiological data files.
+Class for physiological json_docs files.
 
 """
 
@@ -13,7 +13,7 @@ __path__ = [os.path.join('..', '__init__.py')]
 
 class PhysioFile(BIDSFileAbstract):
     """
-    Class for physiological data files.
+    Class for physiological json_docs files.
 
     """
     __slots__ = ()

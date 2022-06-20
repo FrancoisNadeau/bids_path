@@ -103,7 +103,7 @@ AnatomicalLandmarkCoordinates:
       type: number
     minItems: 3
     maxItems: 3
-# Redefinition of AnatomicalLandmarkCoordinates for MRI data
+# Redefinition of AnatomicalLandmarkCoordinates for MRI json_docs
 AnatomicalLandmarkCoordinates__mri:
   name: AnatomicalLandmarkCoordinates
   description: |
@@ -729,7 +729,7 @@ EchoTime2:
   type: number
   unit: s
   exclusiveMinimum: 0
-# Redefinition of EchoTime for fieldmap data
+# Redefinition of EchoTime for fieldmap json_docs
 EchoTime__fmap:
   name: EchoTime
   description: |

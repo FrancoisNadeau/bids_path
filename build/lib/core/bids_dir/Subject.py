@@ -71,7 +71,7 @@ class Subject(BIDSDirAbstract):
 #                           *args,
 #                           ignore: Optional[Iterable] = None) -> Tuple:
 #     """
-#     Returns a ``namedtuple`` containing a subject's derivatives data.
+#     Returns a ``namedtuple`` containing a subject's derivatives json_docs.
 #
 #     Args:
 #         src: str or PathLike

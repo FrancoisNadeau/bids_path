@@ -16,6 +16,7 @@ import os
 import warnings
 from datetime import datetime as dt
 from glob import iglob
+from more_itertools import flatten
 from os import PathLike
 from os.path import basename, exists, getctime
 from pathlib import Path
@@ -29,11 +30,11 @@ from .BIDSDirID import (
 )
 from bids_validator import BIDSValidator
 
-from ..constants.BIDSPathConstants import (
+from ..constants.bidspathlib_docs import (
     BVE_MESSAGE, DD_FILE, TIME_FORMAT,
     Entities, EntityStrings, Components
 )
-from ..constants.Modality import Modalities, Modality
+from ..constants.DataModality import DataModalities, DataModality
 from .BIDSPathCoreFunctions import (
     find_datatype, ComponentsGen, EntityGen, EntityStringGen
 )
@@ -137,9 +138,9 @@ def DatasetName(src: Union[Text, PathLike]) -> Text:
     """
     Returns the name of the dataset.
 
-    For raw data, returns the name of the topmost dataset directory.
+    For raw json_docs, returns the name of the topmost dataset directory.
     For derivatives dataa, returns the name of the pipeline used.
-    It SHOULD correspond to the name of the said data derivatives
+    It SHOULD correspond to the name of the said json_docs derivatives
     directory in lowercase.
     """
     return basename(BIDSRoot(str(src)))
@@ -158,7 +159,7 @@ def DatasetDescription(src: Union[Text, PathLike]) -> Dict:
 
 
 def DatatypeModality(src: Union[Text, PathLike]
-                     ) -> Union[Text, Modality]:
+                     ) -> Tuple:
     """
     Returns a ``Modality`` object.
 
@@ -226,11 +227,12 @@ def PathsByPatterns(src: Union[Text, PathLike],
 
     Patterns should match the '.gitignore' syntax.
     """
-    _type = type(src)
+    _type, _pathlist = type(src), []
     patterns = [patterns] if isinstance(patterns, str) else patterns
     _paths = flatten(iglob(os.path.join(src, _pat), recursive=True)
                      for _pat in patterns)
-    yield from iter(set(map(_type, _paths)))
+    tuple(map(_pathlist.extend, _paths))
+    yield from (_type(_p) for _p in _pathlist)
 
 
 def GetGitAttributes(src: Union[Text, PathLike]) -> Generator:
@@ -271,7 +273,7 @@ def GetDerivativesNames(src: Union[Text, PathLike],
                         ignore: Optional[Union[Iterable[Text], Text]] = None
                         ) -> Tuple:
     """
-    Returns the pipeline names of software used to derive source data.
+    Returns the pipeline names of software used to derive source json_docs.
 
     Args:
         src: str or PathLike

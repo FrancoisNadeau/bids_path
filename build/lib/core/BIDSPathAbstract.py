@@ -11,13 +11,13 @@ from os.path import isdir, isfile, samefile
 from pathlib2 import Path
 from typing import (
     Any, Dict, Generator, Iterable, List,
-    Optional, Text, Tuple, Union
+    Optional, Text, Tuple, Type, Union
 )
 
 from ..general_methods import docstring_parameter, SetFromDict
 from ..BIDSPathLike import BIDSPathLike
 from ..MatchComponents import MatchComponents
-from ..constants import Modality
+from ..constants import DataModality
 from ..functions.BIDSFileID import (
     IsNifti, Is4D, Is3D, IsEvent, IsBeh, IsPhysio, IsSidecar
 )
@@ -50,7 +50,7 @@ class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
 
     To increase stability, properties and zero-argument
     instance methods from ``pathlib.Path`` are all read-only
-    (and thus not callable) data descriptors.
+    (and thus not callable) json_docs descriptors.
     Other instance and classmethods inherited from
     ``collections.UserString`` and ``pathlib.Path``
     are called normally.
@@ -538,7 +538,7 @@ class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
     @staticmethod
     @docstring_parameter(DatatypeModality.__doc__)
     def get_datatype_modality(src: Union[Text, PathLike]
-                              ) -> Union[Text, Modality]:
+                              ) -> Tuple:
         """{0}\n"""
         return DatatypeModality(src)
 
@@ -1046,7 +1046,7 @@ class BIDSPathAbstract(*(UserString, BIDSPathLike, ABC)):
 
     @property
     @docstring_parameter(DatatypeModality.__doc__)
-    def get_datatype_modality(self) -> Union[Text, Modality]:
+    def get_datatype_modality(self) -> Tuple:
         """{0}\n"""
         return DatatypeModality(self)
 

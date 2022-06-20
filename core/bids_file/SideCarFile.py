@@ -7,7 +7,7 @@ import os
 import json
 from typing import Text, Union
 
-from ...constants.BIDSPathConstants import BIDS_RECOMMENDED
+from ...constants.bidspathlib_docs import BIDS_RECOMMENDED
 from ..BIDSFileAbstract import BIDSFileAbstract
 
 __path__ = [os.path.join('..', '__init__.py')]

@@ -9,7 +9,7 @@ The factory``bidspathlib.bids_file.BIDSFile.BIDSFile`` instantiates objects acti
 interfaces for file identification, bundling and manipulation.
 
 Each object has a ``buf`` property which is an instance of ``io.BytesIO`` containing
-the file data as raw bytes. This property is read-only to prevent data contamination.
+the file json_docs as raw bytes. This property is read-only to prevent json_docs contamination.
 However, one can easily perform the desired operations by writing
 to a different location on disk or in-memory stream.
 """

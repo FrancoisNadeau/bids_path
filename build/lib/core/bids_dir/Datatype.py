@@ -9,7 +9,7 @@ from os import PathLike
 from typing import Any, Dict, Optional, Text, Union
 
 from ..BIDSDirAbstract import BIDSDirAbstract
-from ...constants.BIDSPathConstants import DATATYPES_DESCRIPTION
+from ...constants.bidspathlib_docs import BIDS_DATATYPES
 
 __path__ = [os.path.join('..', '__init__.py')]
 
@@ -18,7 +18,7 @@ DATATYPE_BASE_FIELDS = ('description', 'long_name', 'specific')
 
 class Datatype(BIDSDirAbstract):
     """
-    Functional group of different types of data.
+    Functional group of different types of json_docs.
 
     Corresponds to a subdirectory into a subject's directory
     or within one of this subject's session directories, if any.
@@ -51,7 +51,7 @@ class Datatype(BIDSDirAbstract):
 
     def __init__(self, src: Union[Text, PathLike], **kwargs):
         super().__init__(src, **kwargs)
-        _gen: Dict = DATATYPES_DESCRIPTION[self.datatype]
+        _gen: Dict = BIDS_DATATYPES[self.datatype]
         _desc, _long_name, _spec = itemgetter(*DATATYPE_BASE_FIELDS)(_gen)
         self.__set_from_dict__(dict(description=_gen['description'],
                                     long_name=_gen['long_name'],

@@ -11,7 +11,7 @@ from typing import Dict, Iterable, Union, Text, Tuple
 
 from ...general_methods import docstring_parameter
 from ...functions.BIDSFileFunctions import GetEvents
-from ...constants.BIDSPathConstants import (
+from ...constants.bidspathlib_docs import (
     BidsRecommended, BIDS_RECOMMENDED
 )
 from ...constants.bidspathlib_exceptions import Not4DError

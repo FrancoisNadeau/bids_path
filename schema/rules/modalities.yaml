@@ -1,5 +1,5 @@
 ---
-# This file defines which data types fall under each modality.
+# This file defines which json_docs types fall under each modality.
 mri:
   datatypes:
   - anat
